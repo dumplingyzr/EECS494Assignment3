@@ -46,6 +46,9 @@ public class Character : MonoBehaviour {
 		}
 		rigidbody.velocity = vel;
 
+		if (vel.y < -100)
+			Application.LoadLevel ("Scene0");
+
 	}
 
 	Vector3 Move(Vector3 vel){
@@ -73,6 +76,7 @@ public class Character : MonoBehaviour {
 			angle += 10;
 		} else {
 			CancelInvoke ("Rot_Z_Pos");
+			//Physics.gravity = new Vector3 (0, -100, 0);
 			angle = 0;
 			freeze = false;
 		}
@@ -85,6 +89,7 @@ public class Character : MonoBehaviour {
 			angle += 10;
 		} else {
 			CancelInvoke ("Rot_Z_Neg");
+			Physics.gravity = new Vector3 (0, -100, 0);
 			angle = 0;
 			freeze = false;
 		}
@@ -97,6 +102,7 @@ public class Character : MonoBehaviour {
 			angle += 10;
 		} else {
 			CancelInvoke ("Rot_X_Pos");
+			Physics.gravity = new Vector3 (0, -100, 0);
 			angle = 0;
 			freeze = false;
 		}
@@ -109,6 +115,7 @@ public class Character : MonoBehaviour {
 			angle += 10;
 		} else {
 			CancelInvoke ("Rot_X_Neg");
+			Physics.gravity = new Vector3 (0, -100, 0);
 			angle = 0;
 			freeze = false;
 		}
@@ -116,7 +123,8 @@ public class Character : MonoBehaviour {
 
 	void OnCollisionExit(Collision other)
 	{
-		if (rigidbody.velocity.y < -0.5f) {
+		if (rigidbody.velocity.y < -1) {
+			Physics.gravity = new Vector3 (0, 0, 0);
 			switch (direction) {
 			case 1:{InvokeRepeating ("Rot_Z_Pos", 0, 0.1f);break;}
 			case 2:{InvokeRepeating ("Rot_X_Pos", 0, 0.1f);break;}
@@ -131,6 +139,7 @@ public class Character : MonoBehaviour {
 	void OnTriggerEnter(Collider other)
 	{
 		if (rigidbody.velocity.y > -0.1f && rigidbody.velocity.y < 0.1f) {
+			Physics.gravity = new Vector3 (0, 0, 0);
 			switch (direction) {
 			case 1:{InvokeRepeating ("Rot_Z_Neg", 0, 0.1f);break;}
 			case 2:{InvokeRepeating ("Rot_X_Neg", 0, 0.1f);break;}

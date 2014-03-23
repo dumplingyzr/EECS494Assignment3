@@ -5,13 +5,14 @@ public class Character : MonoBehaviour {
 	public float speed = 30;
 	public int direction = 1;
 	public Transform platform1;
-	public Transform platform2;
+	//public Transform platform2;
 	public Vector3 point = new Vector3 (25,0,0);
 	public Vector3 z_axis = new Vector3 (0,0,1);
 	public Vector3 x_axis = new Vector3 (1,0,0);
 	public float angle = 0;
 	public bool freeze = false;
 	// Use this for initialization
+
 	void Start () {
 		Physics.gravity = new Vector3 (0, -100, 0);
 	}
@@ -72,11 +73,11 @@ public class Character : MonoBehaviour {
 	void Rot_Z_Pos(){
 		if (angle < 90) {
 			platform1.RotateAround (transform.position, z_axis, 10);
-			platform2.RotateAround (transform.position, z_axis, 10);
+			//platform2.RotateAround (transform.position, z_axis, 10);
 			angle += 10;
 		} else {
 			CancelInvoke ("Rot_Z_Pos");
-			//Physics.gravity = new Vector3 (0, -100, 0);
+			Physics.gravity = new Vector3 (0, -100, 0);
 			angle = 0;
 			freeze = false;
 		}
@@ -85,11 +86,12 @@ public class Character : MonoBehaviour {
 	void Rot_Z_Neg(){
 		if (angle <90) {
 			platform1.RotateAround (transform.position, z_axis, -10);
-			platform2.RotateAround (transform.position, z_axis, -10);
+			//platform2.RotateAround (transform.position, z_axis, -10);
+			Physics.gravity = new Vector3 (0, -100, 0);
 			angle += 10;
 		} else {
 			CancelInvoke ("Rot_Z_Neg");
-			Physics.gravity = new Vector3 (0, -100, 0);
+			//Physics.gravity = new Vector3 (0, -100, 0);
 			angle = 0;
 			freeze = false;
 		}
@@ -98,7 +100,7 @@ public class Character : MonoBehaviour {
 	void Rot_X_Pos(){
 		if (angle < 90) {
 			platform1.RotateAround (transform.position, x_axis, 10);
-			platform2.RotateAround (transform.position, x_axis, 10);
+			//platform2.RotateAround (transform.position, x_axis, 10);
 			angle += 10;
 		} else {
 			CancelInvoke ("Rot_X_Pos");
@@ -111,11 +113,12 @@ public class Character : MonoBehaviour {
 	void Rot_X_Neg(){
 		if (angle <90) {
 			platform1.RotateAround (transform.position, x_axis, -10);
-			platform2.RotateAround (transform.position, x_axis, -10);
+			//platform2.RotateAround (transform.position, x_axis, -10);
 			angle += 10;
+			Physics.gravity = new Vector3 (0, -100, 0);
 		} else {
 			CancelInvoke ("Rot_X_Neg");
-			Physics.gravity = new Vector3 (0, -100, 0);
+			//Physics.gravity = new Vector3 (0, -100, 0);
 			angle = 0;
 			freeze = false;
 		}
@@ -138,6 +141,9 @@ public class Character : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
+		if(other.tag == "Finish" || other.tag == "Enemy")
+			Application.LoadLevel ("Scene0");
+
 		if (rigidbody.velocity.y > -0.1f && rigidbody.velocity.y < 0.1f) {
 			Physics.gravity = new Vector3 (0, 0, 0);
 			switch (direction) {

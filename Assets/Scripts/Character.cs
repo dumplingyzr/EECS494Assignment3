@@ -46,7 +46,10 @@ public class Character : MonoBehaviour {
 			}
 		}
 		rigidbody.velocity = vel;
-
+		if (rigidbody.velocity.y < -1)
+						Time.timeScale = 0.8f;
+				else
+						Time.timeScale = 1.0f;
 		if (vel.y < -100)
 			Application.LoadLevel ("Scene0");
 
@@ -129,10 +132,10 @@ public class Character : MonoBehaviour {
 		if (rigidbody.velocity.y < -1) {
 			Physics.gravity = new Vector3 (0, 0, 0);
 			switch (direction) {
-			case 1:{InvokeRepeating ("Rot_Z_Pos", 0, 0.1f);break;}
-			case 2:{InvokeRepeating ("Rot_X_Pos", 0, 0.1f);break;}
-			case 3:{InvokeRepeating ("Rot_Z_Neg", 0, 0.1f);break;}
-			case 4:{InvokeRepeating ("Rot_X_Neg", 0, 0.1f);break;}
+			case 1:{InvokeRepeating ("Rot_Z_Pos", 0.2f, 0.02f);break;}
+			case 2:{InvokeRepeating ("Rot_X_Pos", 0.2f, 0.02f);break;}
+			case 3:{InvokeRepeating ("Rot_Z_Neg", 0.2f, 0.02f);break;}
+			case 4:{InvokeRepeating ("Rot_X_Neg", 0.2f, 0.02f);break;}
 			default: break;
 			}
 			freeze = true;
@@ -147,10 +150,10 @@ public class Character : MonoBehaviour {
 		if (rigidbody.velocity.y > -0.1f && rigidbody.velocity.y < 0.1f) {
 			Physics.gravity = new Vector3 (0, 0, 0);
 			switch (direction) {
-			case 1:{InvokeRepeating ("Rot_Z_Neg", 0, 0.1f);break;}
-			case 2:{InvokeRepeating ("Rot_X_Neg", 0, 0.1f);break;}
-			case 3:{InvokeRepeating ("Rot_Z_Pos", 0, 0.1f);break;}
-			case 4:{InvokeRepeating ("Rot_X_Pos", 0, 0.1f);break;}
+			case 1:{InvokeRepeating ("Rot_Z_Neg", 0.2f, 0.02f);break;}
+			case 2:{InvokeRepeating ("Rot_X_Neg", 0.2f, 0.02f);break;}
+			case 3:{InvokeRepeating ("Rot_Z_Pos", 0.2f, 0.02f);break;}
+			case 4:{InvokeRepeating ("Rot_X_Pos", 0.2f, 0.02f);break;}
 			default: break;
 			}
 			freeze = true;

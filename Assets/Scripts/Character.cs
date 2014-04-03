@@ -11,6 +11,7 @@ public class Character : MonoBehaviour {
 	public Vector3 x_axis = new Vector3 (1,0,0);
 	public float angle = 0;
 	public bool freeze = false;
+	public bool GetGravity = false;
 	// Use this for initialization
 
 	void Start () {
@@ -51,7 +52,7 @@ public class Character : MonoBehaviour {
 				else
 						Time.timeScale = 1.0f;
 		if (vel.y < -100)
-			Application.LoadLevel ("Scene0");
+			Application.LoadLevel (Application.loadedLevel);
 
 	}
 
@@ -129,7 +130,10 @@ public class Character : MonoBehaviour {
 
 	void OnCollisionExit(Collision other)
 	{
-		if (rigidbody.velocity.y < -1) {
+		if (rigidbody.velocity.y < -1 
+		    && other.gameObject.tag == "Platform"
+		    && this.gameObject.tag == "Player_G"
+		    && GetGravity == false) {
 			Physics.gravity = new Vector3 (0, 0, 0);
 			switch (direction) {
 			case 1:{InvokeRepeating ("Rot_Z_Pos", 0.2f, 0.02f);break;}
@@ -140,14 +144,18 @@ public class Character : MonoBehaviour {
 			}
 			freeze = true;
 		}
+		else if(GetGravity)
+			GetGravity = false;
 	}
 
 	void OnTriggerEnter(Collider other)
 	{
 		if(other.tag == "Finish" || other.tag == "Enemy")
-			Application.LoadLevel ("Scene0");
+			Application.LoadLevel (Application.loadedLevel);
 
-		if (rigidbody.velocity.y > -0.1f && rigidbody.velocity.y < 0.1f) {
+		if (rigidbody.velocity.y > -0.1f && rigidbody.velocity.y < 0.1f 
+		    && other.gameObject.tag == "Platform"
+		    && this.gameObject.tag == "Player_G") {
 			Physics.gravity = new Vector3 (0, 0, 0);
 			switch (direction) {
 			case 1:{InvokeRepeating ("Rot_Z_Neg", 0.2f, 0.02f);break;}
@@ -160,4 +168,12 @@ public class Character : MonoBehaviour {
 		}
 	}
 
+	void OnCollisionEnter(Collision other)
+	{
+		if (other.gameObject.tag == "Gravity") {
+			Destroy (other.gameObject);
+			this.gameObject.tag = "Player_G";
+			GetGravity = true;
+		}
+	}
 }

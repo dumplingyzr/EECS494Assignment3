@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\Character.cs" />
      <Compile Include="Assets\Scripts\CharacterNew.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
+     <Compile Include="Assets\Scripts\MainCamera.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <None Include="Assets\Gem Shader\diamond shader.shader" />
   </ItemGroup>

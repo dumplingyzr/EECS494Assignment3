@@ -207,5 +207,13 @@ public class Character : MonoBehaviour {
 		if (other.gameObject.tag == "Item") {
 			Destroy (other.gameObject);
 		}
+		if (other.gameObject.tag == "CoinExtraLife") {
+			MainCamera.numLives++;
+			Destroy (other.gameObject);
+		}
+		if (other.gameObject.tag == "CoinExtraScore") {
+			MainCamera.gameScore += 100;
+			Destroy (other.gameObject);
+		}
 	}
 }

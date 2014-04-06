@@ -9,6 +9,7 @@ public class Character : MonoBehaviour {
 	public Vector3 point = new Vector3 (25,0,0);
 	public Vector3 z_axis = new Vector3 (0,0,1);
 	public Vector3 x_axis = new Vector3 (1,0,0);
+	public Vector3 y_axis = new Vector3 (0,1,0);
 	public float angle = 0;
 	public bool freeze = false;
 	public bool GetGravity = false;
@@ -25,7 +26,8 @@ public class Character : MonoBehaviour {
 			if (Input.GetKeyDown (KeyCode.RightArrow) ||
 			    Input.GetKeyDown (KeyCode.D))
 			{
-				transform.Rotate(new Vector3(0,1,0),90);
+				freeze = true;
+				InvokeRepeating ("Rot_Y_Pos", 0.1f, 0.02f);
 				direction ++;
 				if(direction == 5)
 					direction = 1;
@@ -33,7 +35,8 @@ public class Character : MonoBehaviour {
 			else if (Input.GetKeyDown (KeyCode.LeftArrow) ||
 			    Input.GetKeyDown (KeyCode.A))
 			{
-				transform.Rotate(new Vector3(0,1,0),-90);
+				freeze = true;
+				InvokeRepeating ("Rot_Y_Neg", 0.1f, 0.02f);
 				direction --;
 				if(direction == 0)
 					direction = 4;
@@ -71,6 +74,32 @@ public class Character : MonoBehaviour {
 			vel.z = -speed;
 			return vel;
 		default: return vel;
+		}
+	}
+
+	void Rot_Y_Pos(){
+		if (angle < 90) {
+			this.transform.RotateAround (transform.position, y_axis, 10);
+			//platform2.RotateAround (transform.position, z_axis, 10);
+			angle += 10;
+		} else {
+			CancelInvoke ("Rot_Y_Pos");
+			Physics.gravity = new Vector3 (0, -100, 0);
+			angle = 0;
+			freeze = false;
+		}
+	}
+
+	void Rot_Y_Neg(){
+		if (angle < 90) {
+			this.transform.RotateAround (transform.position, y_axis, -10);
+			//platform2.RotateAround (transform.position, z_axis, 10);
+			angle += 10;
+		} else {
+			CancelInvoke ("Rot_Y_Neg");
+			Physics.gravity = new Vector3 (0, -100, 0);
+			angle = 0;
+			freeze = false;
 		}
 	}
 
@@ -174,6 +203,9 @@ public class Character : MonoBehaviour {
 			Destroy (other.gameObject);
 			this.gameObject.tag = "Player_G";
 			GetGravity = true;
+		}
+		if (other.gameObject.tag == "Item") {
+			Destroy (other.gameObject);
 		}
 	}
 }

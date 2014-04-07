@@ -12,11 +12,13 @@ public class Character : MonoBehaviour {
 	public Vector3 y_axis = new Vector3 (0,1,0);
 	public float angle = 0;
 	public bool freeze = false;
-	public bool GetGravity = false;
+	public bool GetItem = false;
+	public static int level;
 	// Use this for initialization
 
 	void Start () {
 		Physics.gravity = new Vector3 (0, -100, 0);
+		level = Application.loadedLevel;
 	}
 	
 	// Update is called once per frame
@@ -162,7 +164,7 @@ public class Character : MonoBehaviour {
 		if (rigidbody.velocity.y < -1 
 		    && other.gameObject.tag == "Platform"
 		    && this.gameObject.tag == "Player_G"
-		    && GetGravity == false) {
+		    && GetItem == false) {
 			Physics.gravity = new Vector3 (0, 0, 0);
 			switch (direction) {
 			case 1:{InvokeRepeating ("Rot_Z_Pos", 0.2f, 0.02f);break;}
@@ -173,13 +175,15 @@ public class Character : MonoBehaviour {
 			}
 			freeze = true;
 		}
-		else if(GetGravity)
-			GetGravity = false;
+		else if(GetItem)
+			GetItem = false;
 	}
 
 	void OnTriggerEnter(Collider other)
 	{
-		if(other.tag == "Finish" || other.tag == "Enemy")
+		if(other.tag == "Finish")
+			Application.LoadLevel ("Scene_End_of_Level");
+		if(other.tag == "Enemy")
 			Application.LoadLevel (Application.loadedLevel);
 
 		if (rigidbody.velocity.y > -0.1f && rigidbody.velocity.y < 0.1f 
@@ -202,10 +206,11 @@ public class Character : MonoBehaviour {
 		if (other.gameObject.tag == "Gravity") {
 			Destroy (other.gameObject);
 			this.gameObject.tag = "Player_G";
-			GetGravity = true;
+			GetItem = true;
 		}
 		if (other.gameObject.tag == "Item") {
 			Destroy (other.gameObject);
+			GetItem = true;
 		}
 	}
 }

@@ -15,14 +15,11 @@ public class Character : MonoBehaviour {
 
 	public static int level;
 	public bool GetGravity = false;
-<<<<<<< HEAD
 	public float jumpSpeed = 500;
 	public bool jumping = false;
-=======
 	public float rotateVel = 0.2f;
 	public bool rotating = false;
-
->>>>>>> FETCH_HEAD
+	
 	// Use this for initialization
 
 	void Start () {
@@ -34,18 +31,15 @@ public class Character : MonoBehaviour {
 	void Update () {
 		Vector3 vel = rigidbody.velocity;
 		if (!freeze) {
-<<<<<<< HEAD
 			if (Input.GetKeyDown (KeyCode.Space) && !jumping) {
 				jumping = true;
 				vel.y = jumpSpeed * Time.deltaTime;
 			}
 			if (Input.GetKeyDown (KeyCode.RightArrow) ||
 			    Input.GetKeyDown (KeyCode.D))
-=======
 
 			if ((Input.GetKeyDown (KeyCode.RightArrow) ||
 			    Input.GetKeyDown (KeyCode.D)) && !rotating)
->>>>>>> FETCH_HEAD
 			{
 				freeze = true;
 				InvokeRepeating ("Rot_Y_Pos", 0.1f, 0.02f);
@@ -200,22 +194,19 @@ public class Character : MonoBehaviour {
 			freeze = false;
 		}
 	}
-
-<<<<<<< HEAD
+	
 	void OnCollisionStay(Collision other)
 	{
 		if (jumping && other.gameObject.tag == "Platform") {
 			jumping = false;
 		}
 	}
-
-=======
+	
 	void Rotate_displace() {
 		//Vector3 pos = rigidbody.velocity;
 		//pos += transform.forward * rotateVel + transform.up * rotateVel;
 		//rigidbody.velocity = pos;
 	}
->>>>>>> FETCH_HEAD
 	void OnCollisionExit(Collision other)
 	{
 		if (rigidbody.velocity.y < -1 

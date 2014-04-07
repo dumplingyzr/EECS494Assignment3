@@ -1,10 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Player.cs">
+<<<<<<< HEAD
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Character.cs">
     <Files>
-      <File FileName="Assets/Scripts/Character.cs" Line="164" Column="1" />
-      <File FileName="Assets/Scripts/Character.cs" Line="17" Column="19" />
-      <File FileName="Assets/Scripts/Player.cs" Line="90" Column="48" />
+      <File FileName="Assets/Scripts/Character.cs" Line="39" Column="23" />
+=======
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Character.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Character.cs" Line="211" Column="4" />
+      <File FileName="Assets/Scripts/MainCamera.cs" Line="11" Column="17" />
+>>>>>>> 7d28f79d55df3b01ad973c07c95b93a71128344e
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

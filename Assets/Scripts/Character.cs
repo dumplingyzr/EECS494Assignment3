@@ -13,6 +13,8 @@ public class Character : MonoBehaviour {
 	public float angle = 0;
 	public bool freeze = false;
 	public bool GetGravity = false;
+	public float jumpSpeed = 500;
+	public bool jumping = false;
 	// Use this for initialization
 
 	void Start () {
@@ -23,6 +25,10 @@ public class Character : MonoBehaviour {
 	void Update () {
 		Vector3 vel = rigidbody.velocity;
 		if (!freeze) {
+			if (Input.GetKeyDown (KeyCode.Space) && !jumping) {
+				jumping = true;
+				vel.y = jumpSpeed * Time.deltaTime;
+			}
 			if (Input.GetKeyDown (KeyCode.RightArrow) ||
 			    Input.GetKeyDown (KeyCode.D))
 			{
@@ -154,6 +160,13 @@ public class Character : MonoBehaviour {
 			//Physics.gravity = new Vector3 (0, -100, 0);
 			angle = 0;
 			freeze = false;
+		}
+	}
+
+	void OnCollisionStay(Collision other)
+	{
+		if (jumping && other.gameObject.tag == "Platform") {
+			jumping = false;
 		}
 	}
 

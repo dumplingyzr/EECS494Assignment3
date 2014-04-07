@@ -35,9 +35,6 @@ public class Character : MonoBehaviour {
 				jumping = true;
 				vel.y = jumpSpeed * Time.deltaTime;
 			}
-			if (Input.GetKeyDown (KeyCode.RightArrow) ||
-			    Input.GetKeyDown (KeyCode.D))
-
 			if ((Input.GetKeyDown (KeyCode.RightArrow) ||
 			    Input.GetKeyDown (KeyCode.D)) && !rotating)
 			{

@@ -15,7 +15,7 @@ public class Character : MonoBehaviour {
 
 	public static int level;
 	public bool GetGravity = false;
-	public float jumpSpeed = 40;
+	public float jumpSpeed = 50;
 	public bool aboutToJump = false;
 	public bool jumping = false;
 	public float rotateVel = 0.2f;
@@ -283,8 +283,14 @@ public class Character : MonoBehaviour {
 		    && this.gameObject.tag == "Player_G"
 		    && (timeSinceExit - Time.time) < -0.5f
 		    && !freeze) {
-			Debug.Log("Flipping on enter" + Time.time);
+
 			Physics.gravity = new Vector3 (0, 0, 0);
+			freeze = true;
+			Invoke ("Rotate_displace", 0.2f);
+			rigidbody.velocity = new Vector3(0,0,0);
+			Physics.gravity = new Vector3(0,0,0);
+			Debug.Log ("collisionexit at " + Time.time);
+
 			switch (direction) {
 			case 1:{InvokeRepeating ("Rot_Z_Neg", 0.1f, 0.02f);break;}
 			case 2:{InvokeRepeating ("Rot_X_Neg", 0.1f, 0.02f);break;}
@@ -297,15 +303,21 @@ public class Character : MonoBehaviour {
 			freeze = true;
 		}
 		timeSinceEnter = Time.time;
-	}
 
-	void OnCollisionEnter(Collision other)
-	{
 		if (other.gameObject.tag == "Gravity") {
 			Destroy (other.gameObject);
 			this.gameObject.tag = "Player_G";
 			GetGravity = true;
 		}
+	}
+
+	void OnCollisionEnter(Collision other)
+	{
+		/*if (other.gameObject.tag == "Gravity") {
+			Destroy (other.gameObject);
+			this.gameObject.tag = "Player_G";
+			GetGravity = true;
+		}*/
 		if (other.gameObject.tag == "Item") {
 			Destroy (other.gameObject);
 			GetGravity = true;

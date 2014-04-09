@@ -19,6 +19,9 @@ public class Character : MonoBehaviour {
 	public bool jumping = false;
 	public float rotateVel = 0.2f;
 	public bool rotating = false;
+
+	private float timeSinceExit = 0.0f;
+	private float timeSinceEnter = 0.0f;
 	
 	// Use this for initialization
 
@@ -108,7 +111,7 @@ public class Character : MonoBehaviour {
 
 		} else {
 			CancelInvoke ("Rot_Y_Pos");
-			Physics.gravity = new Vector3 (0, -100, 0);
+			//Physics.gravity = new Vector3 (0, -100, 0);
 			angle = 0;
 			freeze = false;
 
@@ -124,7 +127,7 @@ public class Character : MonoBehaviour {
 
 		} else {
 			CancelInvoke ("Rot_Y_Neg");
-			Physics.gravity = new Vector3 (0, -100, 0);
+			//Physics.gravity = new Vector3 (0, -100, 0);
 			angle = 0;
 			freeze = false;
 		}
@@ -139,9 +142,9 @@ public class Character : MonoBehaviour {
 
 		} else {
 			CancelInvoke ("Rot_Z_Pos");
-			Physics.gravity = new Vector3 (0, -100, 0);
+			//Physics.gravity = new Vector3 (0, -100, 0);
 			angle = 0;
-			freeze = false;
+			//freeze = false;
 		}
 	}
 
@@ -149,7 +152,7 @@ public class Character : MonoBehaviour {
 		if (angle <90) {
 			platform1.RotateAround (transform.position, z_axis, -10);
 			//platform2.RotateAround (transform.position, z_axis, -10);
-			Physics.gravity = new Vector3 (0, -100, 0);
+			//Physics.gravity = new Vector3 (0, -100, 0);
 			angle += 10;
 			//Rotate_displace();
 
@@ -157,7 +160,7 @@ public class Character : MonoBehaviour {
 			CancelInvoke ("Rot_Z_Neg");
 			//Physics.gravity = new Vector3 (0, -100, 0);
 			angle = 0;
-			freeze = false;
+			//freeze = false;
 		}
 	}
 
@@ -170,9 +173,9 @@ public class Character : MonoBehaviour {
 
 		} else {
 			CancelInvoke ("Rot_X_Pos");
-			Physics.gravity = new Vector3 (0, -100, 0);
+			//Physics.gravity = new Vector3 (0, -100, 0);
 			angle = 0;
-			freeze = false;
+			//freeze = false;
 		}
 	}
 	
@@ -181,14 +184,14 @@ public class Character : MonoBehaviour {
 			platform1.RotateAround (transform.position, x_axis, -10);
 			//platform2.RotateAround (transform.position, x_axis, -10);
 			angle += 10;
-			Physics.gravity = new Vector3 (0, -100, 0);
+			//Physics.gravity = new Vector3 (0, -100, 0);
 			//Rotate_displace();
 
 		} else {
 			CancelInvoke ("Rot_X_Neg");
 			//Physics.gravity = new Vector3 (0, -100, 0);
 			angle = 0;
-			freeze = false;
+			//freeze = false;
 		}
 	}
 	
@@ -198,29 +201,60 @@ public class Character : MonoBehaviour {
 			jumping = false;
 		}
 	}
-	
+
+	void MoveForward() {
+		Vector3 pos = transform.position;
+		pos += transform.forward*1.0f;
+		transform.position = pos;
+		Debug.Log ("forward at " + Time.time);
+
+	}
+	void MoveUp() {
+		Vector3 pos = transform.position;
+		pos -= Vector3.up*0.02f;
+		transform.position = pos;
+		Debug.Log ("up at " + Time.time);
+
+	}
+	void Unfreeze() {
+		freeze = false;
+	}
 	void Rotate_displace() {
-		//Vector3 pos = rigidbody.velocity;
-		//pos += transform.forward * rotateVel + transform.up * rotateVel;
-		//rigidbody.velocity = pos;
+		Debug.Log ("displacing at " + Time.time);
+		
+
+		for(int i = 0; i< 10; i++) 
+			Invoke ("MoveForward", 0.02f);
+
+		for(int i = 0; i< 5; i++) 
+			Invoke ("MoveUp", 0.002f);
+
+		Physics.gravity = new Vector3 (0, -100, 0);
+
+		Invoke ("Unfreeze", 0.2f);
 	}
 	void OnCollisionExit(Collision other)
 	{
 		if (rigidbody.velocity.y < -1 
 		    && other.gameObject.tag == "Platform"
 		    && this.gameObject.tag == "Player_G"
-		    && GetGravity == false) {
+		    && GetGravity == false
+		    && (timeSinceEnter - Time.time) < -0.5f
+		    && !freeze) 
+		{
 			Physics.gravity = new Vector3 (0, 0, 0);
+			freeze = true;
 			Invoke ("Rotate_displace", 0.2f);
-			Vector3 pos = transform.position;
-			pos += transform.up * 1.0f + transform.forward * 1.0f;
-			//transform.position = pos;
+			rigidbody.velocity = new Vector3(0,0,0);
+			Physics.gravity = new Vector3(0,0,0);
+			Debug.Log ("collisionexit at " + Time.time);
+
 
 			switch (direction) {
-			case 1:{InvokeRepeating ("Rot_Z_Pos", 0.2f, 0.02f);break;}
-			case 2:{InvokeRepeating ("Rot_X_Pos", 0.2f, 0.02f);break;}
-			case 3:{InvokeRepeating ("Rot_Z_Neg", 0.2f, 0.02f);break;}
-			case 4:{InvokeRepeating ("Rot_X_Neg", 0.2f, 0.02f);break;}
+			case 1:{InvokeRepeating ("Rot_Z_Pos", 0.1f, 0.02f);break;}
+			case 2:{InvokeRepeating ("Rot_X_Pos", 0.1f, 0.02f);break;}
+			case 3:{InvokeRepeating ("Rot_Z_Neg", 0.1f, 0.02f);break;}
+			case 4:{InvokeRepeating ("Rot_X_Neg", 0.1f, 0.02f);break;}
 			default: break;
 			}
 			//InvokeRepeating ("Rotate_displace", 0.2f, 0.02f);
@@ -228,6 +262,7 @@ public class Character : MonoBehaviour {
 		}
 		else if(GetGravity)
 			GetGravity = false;
+		timeSinceExit = Time.time;
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -239,17 +274,23 @@ public class Character : MonoBehaviour {
 
 		if (rigidbody.velocity.y > -0.1f && rigidbody.velocity.y < 0.1f 
 		    && other.gameObject.tag == "Platform"
-		    && this.gameObject.tag == "Player_G") {
+		    && this.gameObject.tag == "Player_G"
+		    && (timeSinceExit - Time.time) < -0.5f
+		    && !freeze) {
+			Debug.Log("Flipping on enter" + Time.time);
 			Physics.gravity = new Vector3 (0, 0, 0);
 			switch (direction) {
-			case 1:{InvokeRepeating ("Rot_Z_Neg", 0.2f, 0.02f);break;}
-			case 2:{InvokeRepeating ("Rot_X_Neg", 0.2f, 0.02f);break;}
-			case 3:{InvokeRepeating ("Rot_Z_Pos", 0.2f, 0.02f);break;}
-			case 4:{InvokeRepeating ("Rot_X_Pos", 0.2f, 0.02f);break;}
+			case 1:{InvokeRepeating ("Rot_Z_Neg", 0.1f, 0.02f);break;}
+			case 2:{InvokeRepeating ("Rot_X_Neg", 0.1f, 0.02f);break;}
+			case 3:{InvokeRepeating ("Rot_Z_Pos", 0.1f, 0.02f);break;}
+			case 4:{InvokeRepeating ("Rot_X_Pos", 0.1f, 0.02f);break;}
 			default: break;
+			Debug.Log ("triggerenter at " + Time.time);
+
 			}
 			freeze = true;
 		}
+		timeSinceEnter = Time.time;
 	}
 
 	void OnCollisionEnter(Collision other)

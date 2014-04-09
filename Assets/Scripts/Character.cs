@@ -242,8 +242,8 @@ public class Character : MonoBehaviour {
 	void OnCollisionExit(Collision other)
 	{
 		if (rigidbody.velocity.y < -1 
-		    && other.gameObject.tag == "Platform"
-		    && this.gameObject.tag == "Player_G"
+		    && 
+		    ((other.gameObject.tag == "Platform" && this.gameObject.tag == "Player_G") || (other.gameObject.tag == "GravityTile"))
 		    && GetGravity == false
 		    && (timeSinceEnter - Time.time) < -0.5f
 		    && !freeze) 
@@ -279,8 +279,8 @@ public class Character : MonoBehaviour {
 			Application.LoadLevel (Application.loadedLevel);
 
 		if (rigidbody.velocity.y > -0.1f && rigidbody.velocity.y < 0.1f 
-		    && other.gameObject.tag == "Platform"
-		    && this.gameObject.tag == "Player_G"
+		    && 
+		    ((other.gameObject.tag == "Platform" && this.gameObject.tag == "Player_G") || (other.gameObject.tag == "GravityTile"))
 		    && (timeSinceExit - Time.time) < -0.5f
 		    && !freeze) {
 

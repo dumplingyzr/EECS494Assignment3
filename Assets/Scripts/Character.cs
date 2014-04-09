@@ -309,15 +309,27 @@ public class Character : MonoBehaviour {
 			this.gameObject.tag = "Player_G";
 			GetGravity = true;
 		}
+		if (other.gameObject.tag == "Item") {
+			Destroy (other.gameObject);
+			GetGravity = true;
+		}
+		if (other.gameObject.tag == "CoinExtraLife") {
+			MainCamera.numLives++;
+			Destroy (other.gameObject);
+		}
+		if (other.gameObject.tag == "CoinExtraScore") {
+			MainCamera.gameScore += 100;
+			Destroy (other.gameObject);
+		}
 	}
 
 	void OnCollisionEnter(Collision other)
 	{
-		/*if (other.gameObject.tag == "Gravity") {
+		if (other.gameObject.tag == "Gravity") {
 			Destroy (other.gameObject);
 			this.gameObject.tag = "Player_G";
 			GetGravity = true;
-		}*/
+		}
 		if (other.gameObject.tag == "Item") {
 			Destroy (other.gameObject);
 			GetGravity = true;

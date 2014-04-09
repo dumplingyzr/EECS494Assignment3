@@ -15,7 +15,8 @@ public class Character : MonoBehaviour {
 
 	public static int level;
 	public bool GetGravity = false;
-	public float jumpSpeed = 500;
+	public float jumpSpeed = 40;
+	public bool aboutToJump = false;
 	public bool jumping = false;
 	public float rotateVel = 0.2f;
 	public bool rotating = false;
@@ -34,10 +35,6 @@ public class Character : MonoBehaviour {
 	void Update () {
 		Vector3 vel = rigidbody.velocity;
 		if (!freeze) {
-			if (Input.GetKeyDown (KeyCode.Space) && !jumping) {
-				jumping = true;
-				vel.y = jumpSpeed * Time.deltaTime;
-			}
 			if ((Input.GetKeyDown (KeyCode.RightArrow) ||
 			    Input.GetKeyDown (KeyCode.D)) && !rotating)
 			{
@@ -71,6 +68,15 @@ public class Character : MonoBehaviour {
 				vel.x = 0;
 				vel.z = 0;
 			}
+		}
+		//Check if its jumping
+		if (aboutToJump) {
+			jumping = true;
+			aboutToJump = false;
+		}
+		if (Input.GetKeyDown (KeyCode.Space) && !jumping) {
+			vel.y = jumpSpeed;
+			aboutToJump = true;
 		}
 		rigidbody.velocity = vel;
 		if (rigidbody.velocity.y < -1)

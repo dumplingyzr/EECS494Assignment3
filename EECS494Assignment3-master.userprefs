@@ -1,0 +1,13 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="d:\Projects\EECS494Assignment3-master\Assets\Scripts\Buttons.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Character.cs" Line="297" Column="4" />
+      <File FileName="d:\Projects\EECS494Assignment3-master\Assets\Scripts\Buttons.cs" Line="31" Column="4" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

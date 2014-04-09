@@ -14,7 +14,6 @@ public class Character : MonoBehaviour {
 	public bool freeze = false;
 
 	public static int level;
-	public bool GetGravity = false;
 	public float jumpSpeed = 50;
 	public bool aboutToJump = false;
 	public bool jumping = false;
@@ -244,7 +243,6 @@ public class Character : MonoBehaviour {
 		if (rigidbody.velocity.y < -1 
 		    && 
 		    ((other.gameObject.tag == "Platform" && this.gameObject.tag == "Player_G") || (other.gameObject.tag == "GravityTile"))
-		    && GetGravity == false
 		    && (timeSinceEnter - Time.time) < -0.5f
 		    && !freeze) 
 		{
@@ -266,8 +264,7 @@ public class Character : MonoBehaviour {
 			//InvokeRepeating ("Rotate_displace", 0.2f, 0.02f);
 			freeze = true;
 		}
-		else if(GetGravity)
-			GetGravity = false;
+
 		timeSinceExit = Time.time;
 	}
 
@@ -307,11 +304,9 @@ public class Character : MonoBehaviour {
 		if (other.gameObject.tag == "Gravity") {
 			Destroy (other.gameObject);
 			this.gameObject.tag = "Player_G";
-			GetGravity = true;
 		}
 		if (other.gameObject.tag == "Item") {
 			Destroy (other.gameObject);
-			GetGravity = true;
 		}
 		if (other.gameObject.tag == "CoinExtraLife") {
 			MainCamera.numLives++;
@@ -328,11 +323,9 @@ public class Character : MonoBehaviour {
 		if (other.gameObject.tag == "Gravity") {
 			Destroy (other.gameObject);
 			this.gameObject.tag = "Player_G";
-			GetGravity = true;
 		}
 		if (other.gameObject.tag == "Item") {
 			Destroy (other.gameObject);
-			GetGravity = true;
 		}
 		if (other.gameObject.tag == "CoinExtraLife") {
 			MainCamera.numLives++;

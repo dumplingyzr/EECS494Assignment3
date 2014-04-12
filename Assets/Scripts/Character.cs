@@ -22,6 +22,17 @@ public class Character : MonoBehaviour {
 
 	private float timeSinceExit = 0.0f;
 	private float timeSinceEnter = 0.0f;
+
+	private bool tutOne = true;
+	private bool tutTwo = false;
+	private bool tutThree = false;
+	private bool tutFour = false;
+	private bool tutFive = false;
+	private bool tutOneDone = false;
+	private bool tutTwoDone = false;
+	private bool tutThreeDone = false;
+	private bool tutFourDone = false;
+	private bool tutFiveDone = false;
 	
 	// Use this for initialization
 
@@ -78,6 +89,42 @@ public class Character : MonoBehaviour {
 			aboutToJump = true;
 		}
 		rigidbody.velocity = vel;
+
+		//Tutorial Messages
+		float curX = transform.position.x;
+		if (curX > -200 && !tutOneDone) {
+			tutOne = false;
+			tutOneDone = true;
+		}
+		if (curX > -125 && !tutTwoDone) {
+			tutTwo = true;
+			tutTwoDone = true;
+		}
+		if (curX > -80) {
+			tutTwo = false;
+		}
+		if (curX > -40 && !tutThreeDone) {
+			tutThree = true;
+			tutThreeDone = true;
+		}
+		if (curX > -25) {
+			tutThree = false;
+		}
+		if (curX > -15 && !tutFourDone) {
+			tutFour = true;
+			tutFourDone = true;
+		}
+		if (curX > 15) {
+			tutFour = false;
+		}
+		if (curX > 45 && !tutFiveDone) {
+			tutFive = true;
+			tutFiveDone = true;
+		}
+		if (curX > 75 || curX < 45) {
+			tutFive = false;
+		}
+
 		if (rigidbody.velocity.y < -1)
 						Time.timeScale = 0.8f;
 				else
@@ -335,5 +382,46 @@ public class Character : MonoBehaviour {
 			MainCamera.gameScore += 100;
 			Destroy (other.gameObject);
 		}
+	}
+
+	void DoWindow1(int windowID) {
+		GUI.Label (new Rect (10, 15, 150, 25), "Use up arrow to move");
+		GUI.Label (new Rect (10, 30, 250, 25), "Right/Left arrows to change directions");
+		GUI.Label (new Rect (10, 45, 150, 25), "Space to jump");
+	}
+
+	void DoWindow2(int windowID) {
+		GUI.Label (new Rect (10, 15, 250, 25), "Pink Blocks let you switch gravity");
+		GUI.Label (new Rect (10, 30, 150, 25), "Try walking around it");
+	}
+
+	void DoWindow3(int windowID) {
+		GUI.Label (new Rect (10, 15, 250, 25), "Red Gems let you switch gravity");
+		GUI.Label (new Rect (10, 30, 250, 25), "on any block");
+		GUI.Label (new Rect (10, 45, 200, 25), "But only for a few seconds");
+	}
+
+	void DoWindow4(int windowID) {
+		GUI.Label (new Rect (10, 15, 250, 25), "Aim of each puzzle is to get to");
+		GUI.Label (new Rect (10, 30, 250, 25), "the white tile");
+	}
+
+	void DoWindow5(int windowID) {
+		GUI.Label (new Rect (10, 15, 250, 25), "But before you finish");
+		GUI.Label (new Rect (10, 30, 250, 25), "Find the hidden item");
+		GUI.Label (new Rect (10, 45, 250, 25), "Hint: It could be under you");
+	}
+
+	void OnGUI() {
+		if (tutOne)
+			GUI.Window(0, new Rect(110, 10, 250, 80), DoWindow1, "Moving");
+		if (tutTwo) 
+			GUI.Window(0, new Rect(110, 10, 250, 60), DoWindow2, "Gravity");
+		if (tutThree) 
+			GUI.Window(0, new Rect(110, 10, 220, 80), DoWindow3, "Powerups");
+		if (tutFour) 
+			GUI.Window(0, new Rect(110, 10, 220, 60), DoWindow4, "Mission");
+		if (tutFive) 
+			GUI.Window(0, new Rect(110, 10, 200, 80), DoWindow5, "Hidden Items");
 	}
 }

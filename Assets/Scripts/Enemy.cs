@@ -13,18 +13,14 @@ public class Enemy : MonoBehaviour {
 	Vector3 origin;
 	Quaternion r;
 
-	// Use this for initialization
-	void Start () {
-
-	}
-	
 	// Update is called once per frame
 	void Update () {
 		if(rigidbody.velocity.y < -100f)
 			GameObject.Destroy(gameObject);
 
-		//Calculate origin of raycasts
 		r = this.gameObject.transform.rotation;
+
+		//Calculate forward origin of raycasts
 		origin = Vector3.forward * radius;
 		origin = r * origin;
 		origin = gameObject.transform.position + origin;
@@ -39,10 +35,38 @@ public class Enemy : MonoBehaviour {
 		tr_direction = r * tr_direction;
 		tr_length = tr_direction.magnitude * 1.1f;
 
-		if (Physics.Raycast (origin, br_direction, br_length) && !Physics.Raycast (origin, tr_direction, tr_length)) {
-			gameObject.rigidbody.MovePosition(gameObject.transform.position + tr_direction);
+		Navigate ();
+	}
+
+	void MoveForward () {
+		gameObject.rigidbody.MovePosition(gameObject.transform.position + tr_direction);
+	}
+
+	void Rotate180 () {
+		gameObject.rigidbody.MoveRotation(Quaternion.AngleAxis(180, Vector3.up) * r);
+	}
+
+	void RotateRight () {
+		gameObject.rigidbody.MoveRotation (Quaternion.AngleAxis (angular_speed * Time.deltaTime, Vector3.up) * r);
+	}
+
+	void RotateLeft () {
+		gameObject.rigidbody.MoveRotation (Quaternion.AngleAxis (angular_speed * Time.deltaTime, Vector3.down) * r);
+	}
+
+	bool IfDropForward () {
+		return !Physics.Raycast (origin, br_direction, br_length);
+	}
+
+	bool IfWallForward () {
+		return Physics.Raycast (origin, tr_direction, tr_length);
+	}
+
+	void Navigate () {
+		if (IfDropForward () || IfWallForward ()) {
+			Rotate180 ();
 		} else {
-			gameObject.rigidbody.MoveRotation(Quaternion.AngleAxis(180, Vector3.up) * r);
+			MoveForward ();
 		}
 	}
 }

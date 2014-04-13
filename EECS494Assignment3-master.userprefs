@@ -1,9 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="d:\Projects\EECS494Assignment3-master\Assets\Scripts\Buttons.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CharacterNew.cs">
     <Files>
-      <File FileName="Assets\Scripts\Character.cs" Line="297" Column="4" />
-      <File FileName="d:\Projects\EECS494Assignment3-master\Assets\Scripts\Buttons.cs" Line="31" Column="4" />
+      <File FileName="Assets\Scripts\Teleporter.cs" Line="21" Column="42" />
+      <File FileName="Assets\Scripts\Character.cs" Line="155" Column="24" />
+      <File FileName="Assets\Scripts\Gate.cs" Line="24" Column="40" />
+      <File FileName="Assets\Scripts\CharacterNew.cs" Line="295" Column="69" />
+      <File FileName="Assets\Scripts\ColorTile.cs" Line="20" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

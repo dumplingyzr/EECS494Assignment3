@@ -33,12 +33,15 @@ public class CharacterNew : MonoBehaviour {
 	private bool tutThreeDone = false;
 	private bool tutFourDone = false;
 	private bool tutFiveDone = false;
+
+	public GameObject enemy;
 	
 	// Use this for initialization
 	
 	void Start () {
 		Physics.gravity = new Vector3 (0, -100, 0);
 		level = Application.loadedLevel;
+		enemy = GameObject.FindGameObjectWithTag ("Enemy");
 	}
 	
 	// Update is called once per frame
@@ -187,14 +190,17 @@ public class CharacterNew : MonoBehaviour {
 	
 	void Rot_Z_Pos(){
 		if (angle < 90) {
+			Enemy.enable = false;
 			platform1.RotateAround (transform.position, z_axis, 10);
+
 			//platform2.RotateAround (transform.position, z_axis, 10);
 			angle += 10;
 			//Rotate_displace();
 			
 		} else {
 			CancelInvoke ("Rot_Z_Pos");
-			//Physics.gravity = new Vector3 (0, -100, 0);
+			//enemy.transform.Rotate(0,0,90);
+			Enemy.enable = true;
 			angle = 0;
 			//freeze = false;
 		}
@@ -202,7 +208,9 @@ public class CharacterNew : MonoBehaviour {
 	
 	void Rot_Z_Neg(){
 		if (angle <90) {
+			Enemy.enable = false;
 			platform1.RotateAround (transform.position, z_axis, -10);
+
 			//platform2.RotateAround (transform.position, z_axis, -10);
 			//Physics.gravity = new Vector3 (0, -100, 0);
 			angle += 10;
@@ -210,6 +218,7 @@ public class CharacterNew : MonoBehaviour {
 			
 		} else {
 			CancelInvoke ("Rot_Z_Neg");
+			Enemy.enable = true;
 			//Physics.gravity = new Vector3 (0, -100, 0);
 			angle = 0;
 			//freeze = false;
@@ -218,13 +227,16 @@ public class CharacterNew : MonoBehaviour {
 	
 	void Rot_X_Pos(){
 		if (angle < 90) {
+			Enemy.enable = false;
 			platform1.RotateAround (transform.position, x_axis, 10);
+
 			//platform2.RotateAround (transform.position, x_axis, 10);
 			angle += 10;
 			//Rotate_displace();
 			
 		} else {
 			CancelInvoke ("Rot_X_Pos");
+			Enemy.enable = true;
 			//Physics.gravity = new Vector3 (0, -100, 0);
 			angle = 0;
 			//freeze = false;
@@ -233,7 +245,9 @@ public class CharacterNew : MonoBehaviour {
 	
 	void Rot_X_Neg(){
 		if (angle <90) {
+			Enemy.enable = false;
 			platform1.RotateAround (transform.position, x_axis, -10);
+
 			//platform2.RotateAround (transform.position, x_axis, -10);
 			angle += 10;
 			//Physics.gravity = new Vector3 (0, -100, 0);
@@ -241,6 +255,7 @@ public class CharacterNew : MonoBehaviour {
 			
 		} else {
 			CancelInvoke ("Rot_X_Neg");
+			Enemy.enable = true;
 			//Physics.gravity = new Vector3 (0, -100, 0);
 			angle = 0;
 			//freeze = false;

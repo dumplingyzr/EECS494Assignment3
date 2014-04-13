@@ -6,6 +6,8 @@ public class Enemy : MonoBehaviour {
 	public float speed;
 	public float angular_speed;
 
+	public static bool enable = true;
+
 	Vector3 br_direction;
 	float br_length;
 	Vector3 tr_direction;
@@ -23,7 +25,7 @@ public class Enemy : MonoBehaviour {
 		//Calculate forward origin of raycasts
 		origin = Vector3.forward * radius;
 		origin = r * origin;
-		origin = gameObject.transform.position + origin;
+		origin = transform.position + origin;
 
 		//Calculate direction and length of bottom raycast
 		br_direction = Vector3.forward * speed * Time.deltaTime + Vector3.down * radius;
@@ -35,7 +37,8 @@ public class Enemy : MonoBehaviour {
 		tr_direction = r * tr_direction;
 		tr_length = tr_direction.magnitude * 1.1f;
 
-		Navigate ();
+		if(enable)
+			Navigate ();
 	}
 
 	void MoveForward () {
@@ -43,11 +46,11 @@ public class Enemy : MonoBehaviour {
 	}
 
 	void Rotate180 () {
-		gameObject.rigidbody.MoveRotation(Quaternion.AngleAxis(180, Vector3.up) * r);
+		gameObject.rigidbody.MoveRotation(Quaternion.AngleAxis(90, transform.up) * r);
 	}
 
 	void RotateRight () {
-		gameObject.rigidbody.MoveRotation (Quaternion.AngleAxis (angular_speed * Time.deltaTime, Vector3.up) * r);
+		gameObject.rigidbody.MoveRotation (Quaternion.AngleAxis (angular_speed * Time.deltaTime, transform.up) * r);
 	}
 
 	void RotateLeft () {

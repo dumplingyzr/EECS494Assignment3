@@ -95,7 +95,7 @@ public class CharacterNew : MonoBehaviour {
 		
 		//Tutorial Messages
 		float curX = transform.position.x;
-		if (curX > -200 && !tutOneDone) {
+		if (curX > -130 && !tutOneDone) {
 			tutOne = false;
 			tutOneDone = true;
 		}
@@ -103,28 +103,28 @@ public class CharacterNew : MonoBehaviour {
 			tutTwo = true;
 			tutTwoDone = true;
 		}
-		if (curX > -80) {
+		if (curX > -45) {
 			tutTwo = false;
 		}
 		if (curX > -40 && !tutThreeDone) {
 			tutThree = true;
 			tutThreeDone = true;
 		}
-		if (curX > -25) {
+		if (curX > -16) {
 			tutThree = false;
 		}
 		if (curX > -15 && !tutFourDone) {
 			tutFour = true;
 			tutFourDone = true;
 		}
-		if (curX > 15) {
+		if (curX > 40) {
 			tutFour = false;
 		}
 		if (curX > 45 && !tutFiveDone) {
 			tutFive = true;
 			tutFiveDone = true;
 		}
-		if (curX > 75 || curX < 45) {
+		if (curX > 90 || curX < 45) {
 			tutFive = false;
 		}
 		
@@ -388,6 +388,9 @@ public class CharacterNew : MonoBehaviour {
 	
 	void OnCollisionEnter(Collision other)
 	{
+		if (other.gameObject.tag == "Enemy")
+			Application.LoadLevel (Application.loadedLevel);
+
 		if (other.gameObject.tag == "Gravity") {
 			Destroy (other.gameObject);
 			this.gameObject.tag = "Player_G";
@@ -434,15 +437,17 @@ public class CharacterNew : MonoBehaviour {
 	}
 	
 	void OnGUI() {
-		if (tutOne)
-			GUI.Window(0, new Rect(110, 10, 250, 80), DoWindow1, "Moving");
-		if (tutTwo) 
-			GUI.Window(0, new Rect(110, 10, 250, 60), DoWindow2, "Gravity");
-		if (tutThree) 
-			GUI.Window(0, new Rect(110, 10, 220, 80), DoWindow3, "Powerups");
-		if (tutFour) 
-			GUI.Window(0, new Rect(110, 10, 220, 60), DoWindow4, "Mission");
-		if (tutFive) 
-			GUI.Window(0, new Rect(110, 10, 200, 80), DoWindow5, "Hidden Items");
+		if (Application.loadedLevelName == "Scene_Tutorial") {
+			if (tutOne)
+				GUI.Window (0, new Rect (110, 10, 250, 80), DoWindow1, "Moving");
+			if (tutTwo) 
+				GUI.Window (0, new Rect (110, 10, 250, 60), DoWindow2, "Gravity");
+			if (tutThree) 
+				GUI.Window (0, new Rect (110, 10, 220, 80), DoWindow3, "Powerups");
+			if (tutFour) 
+				GUI.Window (0, new Rect (110, 10, 220, 60), DoWindow4, "Mission");
+			if (tutFive) 
+				GUI.Window (0, new Rect (110, 10, 200, 80), DoWindow5, "Hidden Items");
+		}
 	}
 }

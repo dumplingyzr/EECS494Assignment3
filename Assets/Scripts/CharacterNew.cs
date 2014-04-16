@@ -28,11 +28,13 @@ public class CharacterNew : MonoBehaviour {
 	private bool tutThree = false;
 	private bool tutFour = false;
 	private bool tutFive = false;
+	private bool tutSix = false;
 	private bool tutOneDone = false;
 	private bool tutTwoDone = false;
 	private bool tutThreeDone = false;
 	private bool tutFourDone = false;
 	private bool tutFiveDone = false;
+	private bool tutSixDone = false;
 
 	public GameObject enemy;
 	
@@ -124,8 +126,15 @@ public class CharacterNew : MonoBehaviour {
 			tutFive = true;
 			tutFiveDone = true;
 		}
-		if (curX > 90 || curX < 45) {
+		if (curX > 70 || curX < 45) {
 			tutFive = false;
+		}
+		if (curX > 80 && !tutSixDone) {
+			tutSix = true;
+			tutSixDone = true;
+		}
+		if (curX > 100) {
+			tutSix = false;
 		}
 		
 		if (rigidbody.velocity.y < -1)
@@ -435,6 +444,10 @@ public class CharacterNew : MonoBehaviour {
 		GUI.Label (new Rect (10, 30, 250, 25), "Find the hidden item");
 		GUI.Label (new Rect (10, 45, 250, 25), "Hint: It could be under you");
 	}
+
+	void DoWindow6(int windowID) {
+		GUI.Label (new Rect (10, 15, 250, 25), "Watch out for the enemy ahead!");
+	}
 	
 	void OnGUI() {
 		if (Application.loadedLevelName == "Scene_Tutorial") {
@@ -448,6 +461,8 @@ public class CharacterNew : MonoBehaviour {
 				GUI.Window (0, new Rect (110, 10, 220, 60), DoWindow4, "Mission");
 			if (tutFive) 
 				GUI.Window (0, new Rect (110, 10, 200, 80), DoWindow5, "Hidden Items");
+			if (tutSix) 
+				GUI.Window(0, new Rect(110, 10, 220, 50), DoWindow6, "Enemies");
 		}
 	}
 }

@@ -28,11 +28,11 @@ public class Buttons : MonoBehaviour {
 	}
 	void OnMouseDown(){
 		if (gameObject.tag == "Main_Menu")
-			;//Need Main Menu
+			Application.LoadLevel ("Scene_MainMenu");//Need Main Menu
 		if (gameObject.tag == "Replay")
-			Application.LoadLevel (Character.level);
+			Application.LoadLevel (Character.Curr_Level);
 		if (gameObject.tag=="Next_Level")
-			Application.LoadLevel (Character.level);
+			Application.LoadLevel (Character.Next_Level);
 
 	}
 }

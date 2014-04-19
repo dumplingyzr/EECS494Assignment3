@@ -27,9 +27,9 @@ public class Gate : MonoBehaviour {
 
 	void GateOpen(){
 		Vector3 offset = new Vector3 (0, 0, 0.2f);
-		if (counter < 200) {
-			left.position = left.position + offset;
-			right.position = right.position - offset;
+		if (counter < 10/offset.z) {
+			left.localPosition = left.localPosition + offset;
+			right.localPosition = right.localPosition - offset;
 			counter++;
 		} 
 		else {

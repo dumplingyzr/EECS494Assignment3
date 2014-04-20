@@ -43,7 +43,9 @@ public class Character : MonoBehaviour {
 	public static int Next_Level;
 
 	public GUISkin skin;
-	
+
+	AudioSource bg;
+	AudioSource power;
 	// Use this for initialization
 	
 	void Start () {
@@ -51,6 +53,9 @@ public class Character : MonoBehaviour {
 		Curr_Level = Application.loadedLevel;
 		Next_Level = Curr_Level + 1;
 		enemy = GameObject.FindGameObjectWithTag ("Enemy");
+		AudioSource[] audios = GetComponents<AudioSource>();
+		bg = audios[0];
+		power = audios [1];
 	}
 	
 	// Update is called once per frame
@@ -388,6 +393,10 @@ public class Character : MonoBehaviour {
 		if (other.gameObject.tag == "Gravity") {
 			Destroy (other.gameObject);
 			this.gameObject.tag = "Player_G";
+			
+			bg.Stop();
+			power.Play();
+			Invoke("removePower", 5.0f);
 		}
 		if (other.gameObject.tag == "Item") {
 			Destroy (other.gameObject);
@@ -401,7 +410,11 @@ public class Character : MonoBehaviour {
 			Destroy (other.gameObject);
 		}
 	}
-	
+	void removePower() {
+		gameObject.tag = "Player";
+		bg.Play();
+		power.Stop();
+	}
 	void OnCollisionEnter(Collision other)
 	{
 
@@ -430,6 +443,8 @@ public class Character : MonoBehaviour {
 		if (other.gameObject.tag == "Gravity") {
 			Destroy (other.gameObject);
 			this.gameObject.tag = "Player_G";
+			bg.Stop();
+			power.Play();
 		}
 		if (other.gameObject.tag == "Item") {
 			Destroy (other.gameObject);

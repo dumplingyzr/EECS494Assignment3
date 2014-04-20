@@ -276,7 +276,7 @@ public class Character : MonoBehaviour {
 	
 	void OnCollisionStay(Collision other)
 	{
-		if (jumping && other.gameObject.tag == "Platform") {
+		if (jumping && (other.gameObject.tag == "Platform" || other.gameObject.tag == "GravityTile")) {
 			jumping = false;
 		}
 	}

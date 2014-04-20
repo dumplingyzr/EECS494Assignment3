@@ -310,7 +310,7 @@ public class Character : MonoBehaviour {
 		
 		Physics.gravity = new Vector3 (0, -100, 0);
 		
-		Invoke ("Unfreeze", 0.2f);
+		Invoke ("Unfreeze", 0.35f);
 	}
 	void OnCollisionExit(Collision other)
 	{
@@ -320,7 +320,7 @@ public class Character : MonoBehaviour {
 		 (other.gameObject.tag == "GravityTile") ||
 		 (other.gameObject.GetComponent<MeshRenderer>().material.color == 
 		 this.gameObject.GetComponent<MeshRenderer>().material.color && other.gameObject.tag == "Platform"))
-		    //&& (timeSinceEnter - Time.time) < -0.5f  This code is buggy so I removed it
+		    && (timeSinceEnter - Time.time) < -0.5f
 		    && !freeze) 
 		{
 			Physics.gravity = new Vector3 (0, 0, 0);
@@ -352,7 +352,7 @@ public class Character : MonoBehaviour {
 		if(other.tag == "Enemy")
 			Application.LoadLevel (Application.loadedLevel);
 		
-		if (rigidbody.velocity.y > -0.1f && rigidbody.velocity.y < 0.1f 
+		if (rigidbody.velocity.y > -0.5f && rigidbody.velocity.y < 0.5f 
 		    && 
 		    ((other.gameObject.tag == "Platform" && this.gameObject.tag == "Player_G") || 
 		 (other.gameObject.tag == "GravityTile") || 
@@ -400,6 +400,7 @@ public class Character : MonoBehaviour {
 	
 	void OnCollisionEnter(Collision other)
 	{
+
 		if (other.gameObject.tag == "Finish") {
 			switch(Next_Level)//custom level starting at 5, might need modification if the build setting is changed
 			{

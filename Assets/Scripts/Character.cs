@@ -406,16 +406,22 @@ public class Character : MonoBehaviour {
 	{
 
 		if (other.gameObject.tag == "Finish") {
+			if (Application.loadedLevelName == "Scene_Tutorial") {
+				MainMenu.levelGeorge = true;
+			}
+			else {
 			switch(Next_Level)//custom level starting at 5, might need modification if the build setting is changed
 			{
-			case 5: MainMenu.levelVinayak = true; break;
-			case 6: MainMenu.levelAbhinav = true; break;
-			case 7: MainMenu.levelBen = true; break;
-			case 8: MainMenu.levelGeorge = true; break;
+			case 5: MainMenu.levelGeorge = true; break;
+			case 6: MainMenu.levelVinayak = true; break;
+			case 7: MainMenu.levelAbhinav = true; break;
+			case 8: MainMenu.levelBen = true; break;
 			case 9: MainMenu.levelEvan = true; break;
 			default: break;
 			}
+			}
 			Application.LoadLevel ("Scene_End_of_Level");
+
 		}
 		
 		if (other.gameObject.tag == "Enemy")

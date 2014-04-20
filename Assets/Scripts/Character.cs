@@ -34,16 +34,20 @@ public class Character : MonoBehaviour {
 	private bool tutFourDone = false;
 	private bool tutFiveDone = false;
 	private bool tutSixDone = false;
+
+	private float gravity_value = -500;
 	
 	public GameObject enemy;
 
 	public static int Curr_Level;
 	public static int Next_Level;
+
+	public GUISkin skin;
 	
 	// Use this for initialization
 	
 	void Start () {
-		Physics.gravity = new Vector3 (0, -100, 0);
+		Physics.gravity = new Vector3 (0, gravity_value, 0);
 		Curr_Level = Application.loadedLevel;
 		Next_Level = Curr_Level + 1;
 		enemy = GameObject.FindGameObjectWithTag ("Enemy");
@@ -308,7 +312,7 @@ public class Character : MonoBehaviour {
 		for(int i = 0; i< 5; i++) 
 			Invoke ("MoveUp", 0.002f);
 		
-		Physics.gravity = new Vector3 (0, -100, 0);
+		Physics.gravity = new Vector3 (0, gravity_value, 0);
 		
 		Invoke ("Unfreeze", 0.35f);
 	}
@@ -467,6 +471,7 @@ public class Character : MonoBehaviour {
 	}
 	
 	void OnGUI() {
+		GUI.skin = skin;
 		if (Application.loadedLevelName == "Scene_Tutorial") {
 			if (tutOne)
 				GUI.Window (0, new Rect (110, 10, 250, 80), DoWindow1, "Moving");

@@ -87,8 +87,8 @@ public class Character : MonoBehaviour {
 			         Input.GetKey (KeyCode.W))
 				vel = Move (vel);
 			else {
-				vel.x = 0;
-				vel.z = 0;
+				vel.x = vel.x * 0.8f;
+				vel.z = vel.z * 0.8f;
 			}
 		}
 		//Check if its jumping
@@ -148,7 +148,7 @@ public class Character : MonoBehaviour {
 			Time.timeScale = 0.8f;
 		else
 			Time.timeScale = 1.0f;
-		if (vel.y < -200)
+		if (vel.y < -300)
 			Application.LoadLevel (Application.loadedLevel);
 		
 	}

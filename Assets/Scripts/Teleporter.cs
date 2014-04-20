@@ -22,6 +22,7 @@ public class Teleporter : MonoBehaviour {
 			exit.GetComponent<BoxCollider>().isTrigger = true;
 			offset.y = 5;
 			other.gameObject.transform.position = exit.transform.position + offset;
+			audio.Play ();
 		}
 	}
 

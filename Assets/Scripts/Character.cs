@@ -46,6 +46,7 @@ public class Character : MonoBehaviour {
 
 	AudioSource bg;
 	AudioSource power;
+	AudioSource flip;
 	// Use this for initialization
 	
 	void Start () {
@@ -55,7 +56,8 @@ public class Character : MonoBehaviour {
 		enemy = GameObject.FindGameObjectWithTag ("Enemy");
 		AudioSource[] audios = GetComponents<AudioSource>();
 		bg = audios[0];
-		power = audios [1];
+		power = audios[1];
+		flip = audios[2];
 	}
 	
 	// Update is called once per frame
@@ -349,6 +351,7 @@ public class Character : MonoBehaviour {
 			}
 			//InvokeRepeating ("Rotate_displace", 0.2f, 0.02f);
 			freeze = true;
+			flip.Play ();
 		}
 		
 		timeSinceExit = Time.time;
@@ -443,8 +446,6 @@ public class Character : MonoBehaviour {
 		if (other.gameObject.tag == "Gravity") {
 			Destroy (other.gameObject);
 			this.gameObject.tag = "Player_G";
-			bg.Stop();
-			power.Play();
 		}
 		if (other.gameObject.tag == "Item") {
 			Destroy (other.gameObject);

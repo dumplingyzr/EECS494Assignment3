@@ -7,24 +7,25 @@ public class Buttons : MonoBehaviour {
 	public Sprite Next_Level_H;
 	public Sprite Original;
 	// Use this for initialization
+	
+	private Color colorStart;
+	private Color colorEnd;
+	private float duration = 0.2F;
+
 	void Start () {
-		Original = GetComponent<SpriteRenderer> ().sprite;
+		
+		colorStart = renderer.material.color;
+		colorEnd = renderer.material.color;
+		colorEnd.a = 0.2f;	
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	void OnMouseOver(){
 		
-	}
-	void OnMouseEnter(){
-		if(gameObject.tag=="Main_Menu")
-			GetComponent<SpriteRenderer> ().sprite = Main_Menu_H;
-		if(gameObject.tag=="Replay")
-			GetComponent<SpriteRenderer> ().sprite = Replay_H;
-		if(gameObject.tag=="Next_Level")
-			GetComponent<SpriteRenderer> ().sprite = Next_Level_H;
+		float lerp = Mathf.PingPong(Time.time, duration) / duration;
+		renderer.material.color = Color.Lerp(colorStart, colorEnd, lerp);
 	}
 	void OnMouseExit(){
-		GetComponent<SpriteRenderer> ().sprite = Original;
+		renderer.material.color = colorStart;
 	}
 	void OnMouseDown(){
 		if (gameObject.tag == "Main_Menu")

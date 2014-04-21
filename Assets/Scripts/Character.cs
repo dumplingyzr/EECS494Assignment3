@@ -163,7 +163,8 @@ public class Character : MonoBehaviour {
 	Vector3 Move(Vector3 vel){
 		switch (direction) {
 		case 1: //facing forward
-			vel.x = speed;
+			vel.x = vel.x * 0.3f + speed * 0.7f;
+			if(vel.x >= speed) vel.x = speed;
 			return vel;
 		case 3: //facing backward
 			vel.x = -speed;
@@ -331,9 +332,11 @@ public class Character : MonoBehaviour {
 		 (other.gameObject.tag == "GravityTile") ||
 		 (other.gameObject.GetComponent<MeshRenderer>().material.color == 
 		 this.gameObject.GetComponent<MeshRenderer>().material.color && other.gameObject.tag == "Platform"))
-		    && (timeSinceEnter - Time.time) < -0.5f
+		    && (timeSinceEnter - Time.time) < -0.2f
 		    && !freeze) 
 		{
+			Debug.Log("Switching because of exit");
+			Debug.Log("Leaving gravity tile: " + (other.gameObject.tag == "GravityTile"));
 			Physics.gravity = new Vector3 (0, 0, 0);
 			freeze = true;
 			Invoke ("Rotate_displace", 0.2f);
@@ -359,8 +362,25 @@ public class Character : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other)
 	{
-		if(other.tag == "Finish")
+		timeSinceEnter = Time.time;
+
+		if (other.tag == "Finish") {
+			//if (Application.loadedLevelName == "Scene_Tutorial") {
+			//	MainMenu.levelGeorge = true;
+			//}
+			Debug.Log("Finished" + Application.loadedLevelName);
+			switch(Application.loadedLevelName)//custom level starting at 5, might need modification if the build setting is changed
+			{
+			case "Scene_Tutorial": MainMenu.levelGeorge = true; break;
+			case "Level1_ZY": MainMenu.levelAbhinav = true; break;
+			case "Level1_AJ": MainMenu.levelVinayak = true; break;
+				//case 8: MainMenu.levelBen = true; break;
+				//case 9: MainMenu.levelEvan = true; break;
+			default: break;
+			}
+			
 			Application.LoadLevel ("Scene_End_of_Level");
+		}
 		if(other.tag == "Enemy")
 			Application.LoadLevel (Application.loadedLevel);
 		
@@ -370,7 +390,7 @@ public class Character : MonoBehaviour {
 		 (other.gameObject.tag == "GravityTile") || 
 		 (other.gameObject.GetComponent<MeshRenderer>().material.color == 
 		 this.gameObject.GetComponent<MeshRenderer>().material.color && other.gameObject.tag == "Platform"))
-		    && (timeSinceExit - Time.time) < -0.5f
+		    && (timeSinceExit - Time.time) < -0.2f
 		    && !freeze) {
 			
 			Physics.gravity = new Vector3 (0, 0, 0);
@@ -391,8 +411,7 @@ public class Character : MonoBehaviour {
 			}
 			freeze = true;
 		}
-		timeSinceEnter = Time.time;
-		
+
 		if (other.gameObject.tag == "Gravity") {
 			Destroy (other.gameObject);
 			this.gameObject.tag = "Player_G";
@@ -420,22 +439,23 @@ public class Character : MonoBehaviour {
 	}
 	void OnCollisionEnter(Collision other)
 	{
+		timeSinceEnter = Time.time;
 
 		if (other.gameObject.tag == "Finish") {
-			if (Application.loadedLevelName == "Scene_Tutorial") {
-				MainMenu.levelGeorge = true;
-			}
-			else {
-			switch(Next_Level)//custom level starting at 5, might need modification if the build setting is changed
+			//if (Application.loadedLevelName == "Scene_Tutorial") {
+			//	MainMenu.levelGeorge = true;
+			//}
+			Debug.Log("Finished" + Application.loadedLevelName);
+			switch(Application.loadedLevelName)//custom level starting at 5, might need modification if the build setting is changed
 			{
-			case 5: MainMenu.levelGeorge = true; break;
-			case 6: MainMenu.levelVinayak = true; break;
-			case 7: MainMenu.levelAbhinav = true; break;
-			case 8: MainMenu.levelBen = true; break;
-			case 9: MainMenu.levelEvan = true; break;
+			case "Scene_Tutorial": MainMenu.levelGeorge = true; break;
+			case "Level1_ZY": MainMenu.levelAbhinav = true; break;
+			case "Level1_AJ": MainMenu.levelVinayak = true; break;
+			//case 8: MainMenu.levelBen = true; break;
+			//case 9: MainMenu.levelEvan = true; break;
 			default: break;
 			}
-			}
+
 			Application.LoadLevel ("Scene_End_of_Level");
 
 		}

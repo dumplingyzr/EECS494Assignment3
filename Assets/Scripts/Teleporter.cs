@@ -19,10 +19,12 @@ public class Teleporter : MonoBehaviour {
 	void OnCollisionEnter (Collision other){
 		if (other.gameObject.tag == "Player" ||
 		    other.gameObject.tag == "Player_G") {
+			if(TP_Type != 3) {
 			exit.GetComponent<BoxCollider>().isTrigger = true;
 			offset.y = 5;
 			other.gameObject.transform.position = exit.transform.position + offset;
 			audio.Play ();
+			}
 		}
 	}
 

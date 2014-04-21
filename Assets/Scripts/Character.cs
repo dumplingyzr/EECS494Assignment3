@@ -163,7 +163,7 @@ public class Character : MonoBehaviour {
 	Vector3 Move(Vector3 vel){
 		switch (direction) {
 		case 1: //facing forward
-			vel.x = vel.x * 0.3f + speed * 0.7f;
+			vel.x = vel.x * 0.3f + speed * 0.6f;
 			if(vel.x >= speed) vel.x = speed;
 			return vel;
 		case 3: //facing backward

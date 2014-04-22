@@ -7,6 +7,8 @@ public class MainMenu : MonoBehaviour {
 	public static bool levelBen = false;
 	public static bool levelGeorge = false;
 	public static bool levelEvan = false;
+	public static bool levelCG = false;
+
 	
 	public Texture2D iconTutorial;
 	public Texture2D iconVinayak;
@@ -53,15 +55,15 @@ public class MainMenu : MonoBehaviour {
 		}
 
 		//Ben's Level
-		if (levelBen) {
+		if (levelCG) {
 			if (GUI.Button (new Rect (xPos*0.1f, yPos*0.6f, 200, 120), iconBen)) {
-				Application.LoadLevel ("Level1_BM");
+				Application.LoadLevel ("Scene_CG");
 			}
-			GUI.Label (new Rect (xPos*0.1f, yPos*0.6f+120, 100, 20), "Ben");
+			GUI.Label (new Rect (xPos*0.1f, yPos*0.6f+120, 100, 20), "Color & Gravity");
 		}
 		else {
 			GUI.Box (new Rect (xPos*0.1f, yPos*0.6f, 200, 120), new GUIContent(iconBen));
-			GUI.Label (new Rect (xPos*0.1f+30, yPos*0.6f+120, 200, 20), "Level Locked(BM)");
+			GUI.Label (new Rect (xPos*0.1f+30, yPos*0.6f+120, 200, 20), "Level Locked(CG)");
 		}
 
 		//George's Level
@@ -77,7 +79,7 @@ public class MainMenu : MonoBehaviour {
 		}
 
 		//Evan's Level
-		if (levelEvan) {
+		/*if (levelEvan) {
 			if (GUI.Button (new Rect (xPos*0.7f, yPos*0.6f, 200, 120), iconEvan)) {
 				Application.LoadLevel ("Level1_EP");
 			}
@@ -86,7 +88,7 @@ public class MainMenu : MonoBehaviour {
 		else {
 			GUI.Box (new Rect (xPos*0.7f, yPos*0.6f, 200, 120), new GUIContent(iconEvan));
 			GUI.Label (new Rect (xPos*0.7f+30, yPos*0.6f+120, 200, 20), "Level Locked(EP)");
-		}
+		}*/
 	}
 	
 }

@@ -373,9 +373,11 @@ public class Character : MonoBehaviour {
 			Debug.Log("Finished" + Application.loadedLevelName);
 			switch(Application.loadedLevelName)//custom level starting at 5, might need modification if the build setting is changed
 			{
-			case "Scene_Tutorial": MainMenu.levelGeorge = true; break;
+			case "Scene_Tutorial": MainMenu.levelVinayak = true; break;
+			case "Level1_VT": MainMenu.levelCG = true; break;
+			case "Level1_CG": MainMenu.levelGeorge = true; break;
 			case "Level1_ZY": MainMenu.levelAbhinav = true; break;
-			case "Level1_AJ": MainMenu.levelVinayak = true; break;
+			//case "Level1_AJ": MainMenu.levelAbhinav = true; break;
 				//case 8: MainMenu.levelBen = true; break;
 				//case 9: MainMenu.levelEvan = true; break;
 			default: break;
@@ -450,9 +452,10 @@ public class Character : MonoBehaviour {
 			Debug.Log("Finished" + Application.loadedLevelName);
 			switch(Application.loadedLevelName)//custom level starting at 5, might need modification if the build setting is changed
 			{
-			case "Scene_Tutorial": MainMenu.levelGeorge = true; break;
+			case "Scene_Tutorial": MainMenu.levelVinayak = true; break;
+			case "Level1_VT": MainMenu.levelCG = true; break;
+			case "Level1_CG": MainMenu.levelGeorge = true; break;
 			case "Level1_ZY": MainMenu.levelAbhinav = true; break;
-			case "Level1_AJ": MainMenu.levelVinayak = true; break;
 			//case 8: MainMenu.levelBen = true; break;
 			//case 9: MainMenu.levelEvan = true; break;
 			default: break;
@@ -513,6 +516,13 @@ public class Character : MonoBehaviour {
 	void DoWindow6(int windowID) {
 		GUI.Label (new Rect (10, 15, 250, 25), "Watch out for the enemy ahead!");
 	}
+	void DoWindow7(int windowID) {
+		GUI.Label (new Rect (10, 15, 250, 25), "Try and change your color");
+		GUI.Label (new Rect (10, 30, 250, 25), " to match the platform.");
+		GUI.Label (new Rect (10, 45, 250, 25), "Matching colors allow you to");
+		GUI.Label (new Rect (10, 60, 200, 40), "switch gravity around the platforms.");
+
+	}
 	
 	void OnGUI() {
 		GUI.skin = skin;
@@ -529,6 +539,10 @@ public class Character : MonoBehaviour {
 				GUI.Window (0, new Rect (110, 10, 200, 80), DoWindow5, "Hidden Items");
 			if (tutSix) 
 				GUI.Window(0, new Rect(110, 10, 220, 50), DoWindow6, "Enemies");
+		}
+		else if (Application.loadedLevelName == "Level1_VT") {
+			if(transform.position.x < -20 && transform.position.z > 0) 
+				GUI.Window(0, new Rect(110, 10, 220, 120), DoWindow7, "Colors");
 		}
 	}
 }

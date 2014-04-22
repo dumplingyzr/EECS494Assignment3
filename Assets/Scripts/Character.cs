@@ -11,7 +11,7 @@ public class Character : MonoBehaviour {
 	public Vector3 x_axis = new Vector3 (1,0,0);
 	public Vector3 y_axis = new Vector3 (0,1,0);
 	public float angle = 0;
-	public bool freeze = false;
+	public static bool freeze = false;
 
 	public float jumpSpeed = 50;
 	public bool aboutToJump = false;
@@ -58,11 +58,13 @@ public class Character : MonoBehaviour {
 		bg = audios[0];
 		power = audios[1];
 		flip = audios[2];
+		freeze = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		Vector3 vel = rigidbody.velocity;
+
 		if (!freeze) {
 			if ((Input.GetKeyDown (KeyCode.RightArrow) ||
 			     Input.GetKeyDown (KeyCode.D)) && !rotating)

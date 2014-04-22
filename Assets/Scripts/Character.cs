@@ -67,7 +67,7 @@ public class Character : MonoBehaviour {
 		freeze = false;
 		timerOn = false;
 		if (Application.loadedLevelName == "Scene_Tutorial") {
-			gameTimer = 200;
+			gameTimer = 60;
 			timerOn = true;
 		} else if (Application.loadedLevelName == "Level1_ZY") {
 			gameTimer = 200;
@@ -76,10 +76,10 @@ public class Character : MonoBehaviour {
 			gameTimer = 120;
 			timerOn = true;
 		} else if (Application.loadedLevelName == "Level1_VT") {
-			gameTimer = 200;
+			gameTimer = 90;
 			timerOn = true;
 		} else if (Application.loadedLevelName == "Level1_EP") {
-			gameTimer = 200;
+			gameTimer = 180;
 			timerOn = true;
 		}
 		if (timerOn) {
@@ -401,7 +401,8 @@ public class Character : MonoBehaviour {
 			{
 			case "Scene_Tutorial": MainMenu.levelVinayak = true; break;
 			case "Level1_VT": MainMenu.levelCG = true; break;
-			case "Level1_CG": MainMenu.levelGeorge = true; break;
+			case "Level1_CG": MainMenu.levelEvan = true; break;
+			case "Level1_EP": MainMenu.levelGeorge = true; break;
 			case "Level1_ZY": MainMenu.levelAbhinav = true; break;
 			//case "Level1_AJ": MainMenu.levelAbhinav = true; break;
 				//case 8: MainMenu.levelBen = true; break;
@@ -483,8 +484,9 @@ public class Character : MonoBehaviour {
 			{
 			case "Scene_Tutorial": MainMenu.levelVinayak = true; break;
 			case "Level1_VT": MainMenu.levelCG = true; break;
-			case "Level1_CG": MainMenu.levelGeorge = true; break;
-			case "Level1_ZY": MainMenu.levelAbhinav = true; break;
+			case "Level1_CG": MainMenu.levelEvan = true; break;
+			case "Level1_EP": MainMenu.levelGeorge = true; break;
+			case "Level1_ZY": MainMenu.levelAbhinav = true; break;;
 			//case 8: MainMenu.levelBen = true; break;
 			//case 9: MainMenu.levelEvan = true; break;
 			default: break;

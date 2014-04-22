@@ -79,16 +79,16 @@ public class MainMenu : MonoBehaviour {
 		}
 
 		//Evan's Level
-		/*if (levelEvan) {
+		if (levelEvan) {
 			if (GUI.Button (new Rect (xPos*0.7f, yPos*0.6f, 200, 120), iconEvan)) {
 				Application.LoadLevel ("Level1_EP");
 			}
-			GUI.Label (new Rect (xPos*0.7f, yPos*0.6f+120, 100, 20), "Evan");
+			GUI.Label (new Rect (xPos*0.7f, yPos*0.6f+120, 100, 20), "Even Pots");
 		}
 		else {
 			GUI.Box (new Rect (xPos*0.7f, yPos*0.6f, 200, 120), new GUIContent(iconEvan));
-			GUI.Label (new Rect (xPos*0.7f+30, yPos*0.6f+120, 200, 20), "Level Locked(EP)");
-		}*/
+			GUI.Label (new Rect (xPos*0.7f+30, yPos*0.6f+120, 200, 20), "Level Locked");
+		}
 	}
 	
 }

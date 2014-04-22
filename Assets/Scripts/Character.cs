@@ -47,6 +47,7 @@ public class Character : MonoBehaviour {
 	AudioSource bg;
 	AudioSource power;
 	AudioSource flip;
+	AudioSource getitem;
 	// Use this for initialization
 	
 	void Start () {
@@ -58,6 +59,7 @@ public class Character : MonoBehaviour {
 		bg = audios[0];
 		power = audios[1];
 		flip = audios[2];
+		getitem = audios [3];
 		freeze = false;
 	}
 	
@@ -414,12 +416,13 @@ public class Character : MonoBehaviour {
 				
 			}
 			freeze = true;
+			flip.Play ();
 		}
 
 		if (other.gameObject.tag == "Gravity") {
 			Destroy (other.gameObject);
 			this.gameObject.tag = "Player_G";
-			
+			getitem.Play();
 			bg.Stop();
 			power.Play();
 			Invoke("removePower", 5.0f);
@@ -430,10 +433,12 @@ public class Character : MonoBehaviour {
 		if (other.gameObject.tag == "CoinExtraLife") {
 			MainCamera.numLives++;
 			Destroy (other.gameObject);
+			getitem.Play();
 		}
 		if (other.gameObject.tag == "CoinExtraScore") {
 			MainCamera.gameScore += 100;
 			Destroy (other.gameObject);
+			getitem.Play();
 		}
 	}
 	void removePower() {
@@ -470,6 +475,10 @@ public class Character : MonoBehaviour {
 		
 		if (other.gameObject.tag == "Gravity") {
 			Destroy (other.gameObject);
+			getitem.Play();
+			bg.Stop();
+			power.Play();
+			Invoke("removePower", 5.0f);
 			this.gameObject.tag = "Player_G";
 		}
 		if (other.gameObject.tag == "Item") {
@@ -478,10 +487,12 @@ public class Character : MonoBehaviour {
 		if (other.gameObject.tag == "CoinExtraLife") {
 			MainCamera.numLives++;
 			Destroy (other.gameObject);
+			getitem.Play();
 		}
 		if (other.gameObject.tag == "CoinExtraScore") {
 			MainCamera.gameScore += 100;
 			Destroy (other.gameObject);
+			getitem.Play();
 		}
 	}
 	

@@ -6,9 +6,14 @@ public class Gate : MonoBehaviour {
 	public Transform right;
 	private bool triggered = false;
 	private int counter = 0;
+
+	AudioSource power;
 	// Use this for initialization
 	void Start () {
-	
+		AudioSource[] audios = GetComponents<AudioSource>();
+		//bg = audios[0];
+		power = audios[0];
+		//flip = audios[2];
 	}
 	
 	// Update is called once per frame
@@ -22,6 +27,7 @@ public class Gate : MonoBehaviour {
 		    !triggered) {
 			triggered = true;
 			InvokeRepeating("GateOpen",0,0.05f);
+			power.Play();
 		}
 	}
 

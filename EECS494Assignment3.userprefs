@@ -1,10 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MainMenu.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Character.cs">
     <Files>
-      <File FileName="Assets/Scripts/Character.cs" Line="600" Column="1" />
+      <File FileName="Assets/Scripts/Character.cs" Line="605" Column="1" />
       <File FileName="Assets/Scripts/MouseCamera.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Character.cs" Line="583" Column="31" />
+      <File FileName="Assets/Scripts/Character.cs" Line="524" Column="2" />
       <File FileName="Assets/Scripts/Buttons.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/ColorTile.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/GlowingAnimationGravityTile.cs" Line="1" Column="1" />
@@ -12,7 +12,7 @@
       <File FileName="Assets/Scripts/Gate.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Splash.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Fader.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/MainMenu.cs" Line="16" Column="25" />
+      <File FileName="Assets/Scripts/MainMenu.cs" Line="86" Column="71" />
       <File FileName="Assets/Scripts/Teleporter.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>

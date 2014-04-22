@@ -523,41 +523,41 @@ public class Character : MonoBehaviour {
 	}
 	
 	void DoWindow1(int windowID) {
-		GUI.Label (new Rect (10, 15, 150, 25), "Use up arrow to move");
-		GUI.Label (new Rect (10, 30, 250, 25), "Right/Left arrows to change directions");
-		GUI.Label (new Rect (10, 45, 150, 25), "Space to jump");
+		GUI.Label (new Rect (10, 30, 250, 40), "Use up arrow to move");
+		GUI.Label (new Rect (10, 60, 250, 40), "Right/Left arrows to change directions");
+		GUI.Label (new Rect (10, 90, 250, 40), "Space to jump");
 	}
 	
 	void DoWindow2(int windowID) {
-		GUI.Label (new Rect (10, 15, 250, 25), "Pink Blocks let you switch gravity");
-		GUI.Label (new Rect (10, 30, 150, 25), "Try walking around it");
+		GUI.Label (new Rect (10, 30, 250, 40), "Pink Blocks let you switch gravity");
+		GUI.Label (new Rect (10, 60, 250, 40), "Try walking around it");
 	}
 	
 	void DoWindow3(int windowID) {
-		GUI.Label (new Rect (10, 15, 250, 25), "Red Gems let you switch gravity");
-		GUI.Label (new Rect (10, 30, 250, 25), "on any block");
-		GUI.Label (new Rect (10, 45, 200, 25), "But only for a few seconds");
+		GUI.Label (new Rect (10, 30, 250, 40), "Red Gems let you switch gravity");
+		GUI.Label (new Rect (10, 60, 250, 40), "on any block");
+		GUI.Label (new Rect (10, 90, 250, 40), "But only for a few seconds");
 	}
 	
 	void DoWindow4(int windowID) {
-		GUI.Label (new Rect (10, 15, 250, 25), "Aim of each puzzle is to get to");
-		GUI.Label (new Rect (10, 30, 250, 25), "the white tile");
+		GUI.Label (new Rect (10, 30, 290, 40), "Aim of each puzzle is");
+		GUI.Label (new Rect (10, 60, 250, 40), "to get to the white tile");
 	}
 	
 	void DoWindow5(int windowID) {
-		GUI.Label (new Rect (10, 15, 250, 25), "But before you finish");
-		GUI.Label (new Rect (10, 30, 250, 25), "Find the hidden item");
-		GUI.Label (new Rect (10, 45, 250, 25), "Hint: It could be under you");
+		GUI.Label (new Rect (10, 30, 250, 40), "But before you finish");
+		GUI.Label (new Rect (10, 60, 250, 40), "Find the hidden item");
+		GUI.Label (new Rect (10, 90, 250, 40), "Hint: It could be under you");
 	}
 	
 	void DoWindow6(int windowID) {
-		GUI.Label (new Rect (10, 15, 250, 25), "Watch out for the enemy ahead!");
+		GUI.Label (new Rect (10, 30, 250, 40), "Watch out for the enemy ahead!");
 	}
 	void DoWindow7(int windowID) {
-		GUI.Label (new Rect (10, 15, 250, 25), "Try and change your color");
-		GUI.Label (new Rect (10, 30, 250, 25), " to match the platform.");
-		GUI.Label (new Rect (10, 45, 250, 25), "Matching colors allow you to");
-		GUI.Label (new Rect (10, 60, 200, 40), "switch gravity around the platforms.");
+		GUI.Label (new Rect (10, 30, 250, 40), "Try and change your color");
+		GUI.Label (new Rect (10, 60, 250, 40), " to match the platform.");
+		GUI.Label (new Rect (10, 90, 250, 40), "Matching colors allow you to");
+		GUI.Label (new Rect (10, 120, 200, 40), "switch gravity around the platforms.");
 
 	}
 	
@@ -566,21 +566,21 @@ public class Character : MonoBehaviour {
 		float xpos = Screen.width;
 		if (Application.loadedLevelName == "Scene_Tutorial") {
 			if (tutOne)
-				GUI.Window (0, new Rect (110, 10, 250, 80), DoWindow1, "Moving");
+				GUI.Window (0, new Rect (110, 10, 250, 150), DoWindow1, "Moving");
 			if (tutTwo) 
-				GUI.Window (0, new Rect (110, 10, 250, 60), DoWindow2, "Gravity");
+				GUI.Window (0, new Rect (110, 10, 250, 150), DoWindow2, "Gravity");
 			if (tutThree) 
-				GUI.Window (0, new Rect (110, 10, 220, 80), DoWindow3, "Powerups");
+				GUI.Window (0, new Rect (110, 10, 250, 150), DoWindow3, "Powerups");
 			if (tutFour) 
-				GUI.Window (0, new Rect (110, 10, 220, 60), DoWindow4, "Mission");
+				GUI.Window (0, new Rect (110, 10, 250, 150), DoWindow4, "Mission");
 			if (tutFive) 
-				GUI.Window (0, new Rect (110, 10, 200, 80), DoWindow5, "Hidden Items");
+				GUI.Window (0, new Rect (110, 10, 250, 150), DoWindow5, "Hidden Items");
 			if (tutSix) 
-				GUI.Window(0, new Rect(110, 10, 220, 50), DoWindow6, "Enemies");
+				GUI.Window(0, new Rect(110, 10, 250, 150), DoWindow6, "Enemies");
 		}
 		else if (Application.loadedLevelName == "Level1_VT") {
 			if(transform.position.x < -20 && transform.position.z > 0) 
-				GUI.Window(0, new Rect(110, 10, 220, 120), DoWindow7, "Colors");
+				GUI.Window(0, new Rect(110, 10, 250, 120), DoWindow7, "Colors");
 		}
 		if (timerOn) {
 			int orignalSize = GUI.skin.label.fontSize;

@@ -78,6 +78,9 @@ public class Character : MonoBehaviour {
 		} else if (Application.loadedLevelName == "Level1_VT") {
 			gameTimer = 200;
 			timerOn = true;
+		} else if (Application.loadedLevelName == "Level1_EP") {
+			gameTimer = 200;
+			timerOn = true;
 		}
 		if (timerOn) {
 			InvokeRepeating ("Countdown", 1, 1);

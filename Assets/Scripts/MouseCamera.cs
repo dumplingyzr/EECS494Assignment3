@@ -6,7 +6,7 @@ public class MouseCamera : MonoBehaviour {
 	public float rotateSpeed = 5;
 	Vector3 offset;
 	public bool RightButtonHold = false;
-
+	public int CamLevel = 0;
 	Quaternion PrevRotation;
 	Quaternion ThisPrevRotation;
 	Vector3 PrevPosition;
@@ -45,6 +45,26 @@ public class MouseCamera : MonoBehaviour {
 			RightButtonHold = false;
 			Character.freeze = false;
 		}
+
+		Vector3 pos = this.transform.localPosition;
+		if (Input.GetAxis("Mouse ScrollWheel") > 0) // forward
+		{
+			if(CamLevel>=-3){
+				CamLevel--;
+				pos.y*=0.8f;
+				pos.z*=0.8f;
+				transform.localPosition = pos;
+			}
+		}
+		if (Input.GetAxis("Mouse ScrollWheel") < 0) // back
+		{
+			if(CamLevel<=3){
+				CamLevel++;
+				pos.y*=1.25f;
+				pos.z*=1.25f;
+				transform.localPosition = pos;}
+		}
+
 	}
 }
 

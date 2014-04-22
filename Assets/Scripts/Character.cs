@@ -46,6 +46,7 @@ public class Character : MonoBehaviour {
 	public static int Next_Level;
 
 	public GUISkin skin;
+	public Font f;
 
 	AudioSource bg;
 	AudioSource power;
@@ -577,8 +578,15 @@ public class Character : MonoBehaviour {
 				GUI.Window(0, new Rect(110, 10, 220, 120), DoWindow7, "Colors");
 		}
 		if (timerOn) {
-			GUI.Label (new Rect (xpos * 0.8f, 10, 200, 30), "TIME REMAINING");
-			GUI.Label (new Rect (xpos * 0.8f, 20, 100, 30), gameTimer.ToString ());
+			int orignalSize = GUI.skin.label.fontSize;
+			Font orignalFont = GUI.skin.label.font;
+			GUI.skin.label.fontSize = 50;
+			GUI.skin.label.font = f;
+			//GUI.Label (new Rect (xpos * 0.45f, 10, 200, 30), "TIME REMAINING");
+			GUI.Label (new Rect (xpos * 0.45f, 30, 100, 100), gameTimer.ToString ());
+			GUI.skin.label.fontSize = orignalSize;
+			GUI.skin.label.font = orignalFont;
+
 		}
 	}
 

@@ -72,7 +72,7 @@ public class Character : MonoBehaviour {
 			gameTimer = 200;
 			timerOn = true;
 		} else if (Application.loadedLevelName == "Level1_AJ") {
-			gameTimer = 200;
+			gameTimer = 120;
 			timerOn = true;
 		} else if (Application.loadedLevelName == "Level1_VT") {
 			gameTimer = 200;

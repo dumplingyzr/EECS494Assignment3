@@ -36,6 +36,9 @@ public class Character : MonoBehaviour {
 	private bool tutSixDone = false;
 
 	private float gravity_value = -500;
+
+	private int gameTimer;
+	private bool timerOn;
 	
 	public GameObject enemy;
 
@@ -61,6 +64,23 @@ public class Character : MonoBehaviour {
 		flip = audios[2];
 		getitem = audios [3];
 		freeze = false;
+		timerOn = false;
+		if (Application.loadedLevelName == "Scene_Tutorial") {
+			gameTimer = 200;
+			timerOn = true;
+		} else if (Application.loadedLevelName == "Level1_ZY") {
+			gameTimer = 200;
+			timerOn = true;
+		} else if (Application.loadedLevelName == "Level1_AJ") {
+			gameTimer = 200;
+			timerOn = true;
+		} else if (Application.loadedLevelName == "Level1_VT") {
+			gameTimer = 200;
+			timerOn = true;
+		}
+		if (timerOn) {
+			InvokeRepeating ("Countdown", 1, 1);
+		}
 	}
 	
 	// Update is called once per frame
@@ -537,6 +557,7 @@ public class Character : MonoBehaviour {
 	
 	void OnGUI() {
 		GUI.skin = skin;
+		float xpos = Screen.width;
 		if (Application.loadedLevelName == "Scene_Tutorial") {
 			if (tutOne)
 				GUI.Window (0, new Rect (110, 10, 250, 80), DoWindow1, "Moving");
@@ -554,6 +575,17 @@ public class Character : MonoBehaviour {
 		else if (Application.loadedLevelName == "Level1_VT") {
 			if(transform.position.x < -20 && transform.position.z > 0) 
 				GUI.Window(0, new Rect(110, 10, 220, 120), DoWindow7, "Colors");
+		}
+		if (timerOn) {
+			GUI.Label (new Rect (xpos * 0.8f, 10, 200, 30), "TIME REMAINING");
+			GUI.Label (new Rect (xpos * 0.8f, 20, 100, 30), gameTimer.ToString ());
+		}
+	}
+
+	void Countdown () {
+		if (--gameTimer == 0) {
+			CancelInvoke ("Countdown");
+			Application.LoadLevel (Application.loadedLevel);
 		}
 	}
 }

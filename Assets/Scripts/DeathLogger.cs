@@ -20,17 +20,23 @@ public class DeathLogger : MonoBehaviour {
 	}
 
 	void OnDrawGizmos () {
-		if (logger != null) {
-			foreach (PosInstanceClass entry in logger.Entries()) {
-				Gizmos.DrawRay (level.transform.TransformPoint (entry.position), level.transform.TransformDirection (entry.velocity * entry.duration));
-			}
+				if (logger != null) {
+						foreach (PosInstanceClass entry in logger.Entries()) {
+								Gizmos.DrawRay (level.transform.TransformPoint (new Vector3 (entry.position_x, entry.position_y, entry.position_z)), level.transform.TransformDirection (new Vector3 (entry.velocity_x, entry.velocity_y, entry.velocity_z) * entry.duration));
+						}
+				}
+				LogClassWrapper temp = LogScript.GetLog (filename);
+		if (temp != null) {
+				foreach (LogClass log in temp.logs) {
+						foreach (PosInstanceClass entry in log.Entries ()) {
+								Gizmos.DrawRay (level.transform.TransformPoint (new Vector3 (entry.position_x, entry.position_y, entry.position_z)), level.transform.TransformDirection (new Vector3 (entry.velocity_x, entry.velocity_y, entry.velocity_z) * entry.duration));
+						}
+				}
 		}
 	}
 
 	void OnDestroy () {
 		logger.tod = DateTime.Now;
-		if (filename == null)
-						filename = "default";
 		LogScript.Append(filename, logger);
 	}
 }

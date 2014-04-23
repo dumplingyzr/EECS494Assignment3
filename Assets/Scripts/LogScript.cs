@@ -26,7 +26,6 @@ public static class LogScript {
 		if (logs.ContainsKey (filename)) {
 			logs.TryGetValue (filename, out temp);
 			temp.logs.Add (log);
-			File.Create("filename");
 		} else {
 			temp = new LogClassWrapper ();
 			temp.logs.Add (log);
@@ -37,5 +36,11 @@ public static class LogScript {
 		FileStream writer = File.Open (Path.Combine (Application.persistentDataPath, filename).ToString (), FileMode.Create);
 		serializer.Serialize (writer, temp);
 		writer.Close ();
+	}
+
+	public static LogClassWrapper GetLog (string filename) {
+		LogClassWrapper temp;
+		logs.TryGetValue (filename, out temp);
+		return temp;
 	}
 }

@@ -3,51 +3,35 @@ using System.Collections;
 using System;
 
 public class DeathLogger : MonoBehaviour {
-	ArrayList log;
 	public GameObject g;
 	public GameObject level;
-	bool died;
-	DateTime tod;
+	LogClass logger;
 	public float duration;
+	public string filename;
 
 	// Use this for initialization
 	void Start () {
-		DontDestroyOnLoad (this);
-		log = new ArrayList ();
-		died = false;
+		logger = new LogClass (duration);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (g) {
-			log.Add (new LogInstance (g));
-		} else if (!died) {
-			tod = DateTime.Now;
-			died = true;
-		}
+			logger.Add (new PosInstanceClass (level.transform.InverseTransformPoint(g.transform.position), level.transform.InverseTransformDirection(g.rigidbody.velocity)));
 	}
 
 	void OnDrawGizmos () {
-		foreach (LogInstance entry in log) {
-			if(!died || (tod - entry.timestamp).TotalSeconds < duration)
-				Gizmos.DrawRay (entry.position, entry.velocity);
+		if (logger != null) {
+			foreach (PosInstanceClass entry in logger.Entries()) {
+				Gizmos.DrawRay (level.transform.TransformPoint (entry.position), level.transform.TransformDirection (entry.velocity * entry.duration));
+			}
 		}
+	}
+
+	void OnDestroy () {
+		logger.tod = DateTime.Now;
+		if (filename == null)
+						filename = "default";
+		LogScript.Append(filename, logger);
 	}
 }
 
-class LogInstance {
-	public Vector3 position;
-	public Vector3 velocity;
-	public DateTime timestamp;
-
-	public LogInstance (Vector3 pos, Vector3 vel) {
-		position = pos;
-		velocity = vel * Time.deltaTime;
-		timestamp = DateTime.Now;
-		}
-
-	public LogInstance (GameObject g) :
-		this (g.transform.position, g.rigidbody.velocity)
-	{
-	}
-}

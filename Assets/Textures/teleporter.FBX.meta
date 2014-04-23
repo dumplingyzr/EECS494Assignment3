@@ -1,0 +1,322 @@
+fileFormatVersion: 2
+guid: 68d3e0b841af27748934c2e84d510114
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: Cylinder01
+    100002: Omni01
+    100004: Omni02
+    100006: Omni03
+    100008: Omni04
+    100010: Omni05
+    100012: Omni06
+    100014: Omni07
+    100016: Omni08
+    100018: Omni09
+    100020: Omni10
+    100022: Omni11
+    100024: Omni12
+    100026: Omni13
+    100028: Omni14
+    100030: Omni15
+    100032: Omni16
+    100034: Omni17
+    100036: Omni18
+    100038: Omni19
+    100040: Omni20
+    100042: Omni21
+    100044: Omni22
+    100046: Omni23
+    100048: Omni24
+    100050: Omni25
+    100052: Omni26
+    100054: Omni27
+    100056: Omni28
+    100058: Omni29
+    100060: Omni30
+    100062: Omni31
+    100064: Omni32
+    100066: Omni33
+    100068: Omni34
+    100070: Omni35
+    100072: Omni36
+    100074: Omni37
+    100076: Omni38
+    100078: Omni39
+    100080: Omni40
+    100082: Omni41
+    100084: Omni42
+    100086: Omni43
+    100088: SG Lock 1
+    100090: SG Lock 2
+    100092: SG Lock 3
+    100094: SG Lock 4
+    100096: SG Lock 5
+    100098: SG Lock 6
+    100100: SG Lock 7
+    100102: SG Pin 1
+    100104: SG Pin 2
+    100106: SG Pin 3
+    100108: SG Pin 4
+    100110: SG Pin 5
+    100112: SG Pin 6
+    100114: SG Pin 7
+    100116: SGC Control 1
+    100118: SGC Control 2
+    100120: SGC Control 3
+    100122: SGC Control 4
+    100124: SGC Control 5
+    100126: SGC Control 6
+    100128: SGC Control 7
+    100130: SGC Lock 1
+    100132: SGC Lock 2
+    100134: SGC Lock 3
+    100136: SGC Lock 4
+    100138: SGC Lock 5
+    100140: SGC Lock 6
+    100142: SGC Lock 7
+    100144: SGC Lock Support 1
+    100146: SGC Lock Support 2
+    100148: SGC Lock Support 3
+    100150: SGC Lock Support 4
+    100152: SGC Lock Support 5
+    100154: SGC Lock Support 6
+    100156: SGC Lock Support 7
+    100158: Stargate
+    100160: Stargate Address
+    100162: Stargate Address Control
+    100164: Stargate SG-1
+    100166: Stargate SG-1.Target
+    100168: //RootNode
+    400000: Cylinder01
+    400002: Omni01
+    400004: Omni02
+    400006: Omni03
+    400008: Omni04
+    400010: Omni05
+    400012: Omni06
+    400014: Omni07
+    400016: Omni08
+    400018: Omni09
+    400020: Omni10
+    400022: Omni11
+    400024: Omni12
+    400026: Omni13
+    400028: Omni14
+    400030: Omni15
+    400032: Omni16
+    400034: Omni17
+    400036: Omni18
+    400038: Omni19
+    400040: Omni20
+    400042: Omni21
+    400044: Omni22
+    400046: Omni23
+    400048: Omni24
+    400050: Omni25
+    400052: Omni26
+    400054: Omni27
+    400056: Omni28
+    400058: Omni29
+    400060: Omni30
+    400062: Omni31
+    400064: Omni32
+    400066: Omni33
+    400068: Omni34
+    400070: Omni35
+    400072: Omni36
+    400074: Omni37
+    400076: Omni38
+    400078: Omni39
+    400080: Omni40
+    400082: Omni41
+    400084: Omni42
+    400086: Omni43
+    400088: SG Lock 1
+    400090: SG Lock 2
+    400092: SG Lock 3
+    400094: SG Lock 4
+    400096: SG Lock 5
+    400098: SG Lock 6
+    400100: SG Lock 7
+    400102: SG Pin 1
+    400104: SG Pin 2
+    400106: SG Pin 3
+    400108: SG Pin 4
+    400110: SG Pin 5
+    400112: SG Pin 6
+    400114: SG Pin 7
+    400116: SGC Control 1
+    400118: SGC Control 2
+    400120: SGC Control 3
+    400122: SGC Control 4
+    400124: SGC Control 5
+    400126: SGC Control 6
+    400128: SGC Control 7
+    400130: SGC Lock 1
+    400132: SGC Lock 2
+    400134: SGC Lock 3
+    400136: SGC Lock 4
+    400138: SGC Lock 5
+    400140: SGC Lock 6
+    400142: SGC Lock 7
+    400144: SGC Lock Support 1
+    400146: SGC Lock Support 2
+    400148: SGC Lock Support 3
+    400150: SGC Lock Support 4
+    400152: SGC Lock Support 5
+    400154: SGC Lock Support 6
+    400156: SGC Lock Support 7
+    400158: Stargate
+    400160: Stargate Address
+    400162: Stargate Address Control
+    400164: Stargate SG-1
+    400166: Stargate SG-1.Target
+    400168: //RootNode
+    2300000: Cylinder01
+    2300002: SG Lock 1
+    2300004: SG Lock 2
+    2300006: SG Lock 3
+    2300008: SG Lock 4
+    2300010: SG Lock 5
+    2300012: SG Lock 6
+    2300014: SG Lock 7
+    2300016: SG Pin 1
+    2300018: SG Pin 2
+    2300020: SG Pin 3
+    2300022: SG Pin 4
+    2300024: SG Pin 5
+    2300026: SG Pin 6
+    2300028: SG Pin 7
+    2300030: SGC Lock 1
+    2300032: SGC Lock 2
+    2300034: SGC Lock 3
+    2300036: SGC Lock 4
+    2300038: SGC Lock 5
+    2300040: SGC Lock 6
+    2300042: SGC Lock 7
+    2300044: SGC Lock Support 1
+    2300046: SGC Lock Support 2
+    2300048: SGC Lock Support 3
+    2300050: SGC Lock Support 4
+    2300052: SGC Lock Support 5
+    2300054: SGC Lock Support 6
+    2300056: SGC Lock Support 7
+    2300058: Stargate
+    2300060: Stargate Address
+    3300000: Cylinder01
+    3300002: SG Lock 1
+    3300004: SG Lock 2
+    3300006: SG Lock 3
+    3300008: SG Lock 4
+    3300010: SG Lock 5
+    3300012: SG Lock 6
+    3300014: SG Lock 7
+    3300016: SG Pin 1
+    3300018: SG Pin 2
+    3300020: SG Pin 3
+    3300022: SG Pin 4
+    3300024: SG Pin 5
+    3300026: SG Pin 6
+    3300028: SG Pin 7
+    3300030: SGC Lock 1
+    3300032: SGC Lock 2
+    3300034: SGC Lock 3
+    3300036: SGC Lock 4
+    3300038: SGC Lock 5
+    3300040: SGC Lock 6
+    3300042: SGC Lock 7
+    3300044: SGC Lock Support 1
+    3300046: SGC Lock Support 2
+    3300048: SGC Lock Support 3
+    3300050: SGC Lock Support 4
+    3300052: SGC Lock Support 5
+    3300054: SGC Lock Support 6
+    3300056: SGC Lock Support 7
+    3300058: Stargate
+    3300060: Stargate Address
+    4300000: Stargate Address
+    4300002: Cylinder01
+    4300004: Stargate
+    4300006: SG Pin 7
+    4300008: SGC Lock 7
+    4300010: SGC Lock Support 7
+    4300012: SG Lock 1
+    4300014: SG Lock 2
+    4300016: SG Lock 3
+    4300018: SG Lock 4
+    4300020: SG Lock 5
+    4300022: SG Lock 6
+    4300024: SGC Lock Support 1
+    4300026: SGC Lock Support 2
+    4300028: SGC Lock Support 3
+    4300030: SGC Lock Support 4
+    4300032: SGC Lock Support 5
+    4300034: SGC Lock Support 6
+    4300036: SGC Lock 1
+    4300038: SGC Lock 2
+    4300040: SGC Lock 3
+    4300042: SGC Lock 4
+    4300044: SGC Lock 5
+    4300046: SGC Lock 6
+    4300048: SG Pin 1
+    4300050: SG Pin 2
+    4300052: SG Pin 3
+    4300054: SG Pin 4
+    4300056: SG Pin 5
+    4300058: SG Pin 6
+    4300060: SG Lock 7
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  userData: 

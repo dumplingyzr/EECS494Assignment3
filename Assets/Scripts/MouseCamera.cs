@@ -22,7 +22,7 @@ public class MouseCamera : MonoBehaviour {
 		float desiredAngle = target.transform.eulerAngles.y;
 		Quaternion rotation = Quaternion.Euler(0, desiredAngle-90, 0);
 
-		if (Input.GetMouseButton (1)) {
+		if (Input.GetMouseButton (1)|| Input.GetKey(KeyCode.LeftShift)) {
 			target.rigidbody.velocity = new Vector3(0,0,0);
 			Character.freeze = true;
 			if(!RightButtonHold)

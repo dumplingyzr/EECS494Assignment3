@@ -12,6 +12,7 @@ public class DeathLogger : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		logger = new LogClass (duration);
+		Debug.Log (Application.persistentDataPath);
 	}
 	
 	// Update is called once per frame
